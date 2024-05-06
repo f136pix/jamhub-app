@@ -1,0 +1,62 @@
+#pgsql deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgsql-depl-dotnet
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-dotnet
+  template:
+    metadata:
+      labels:
+        app: postgres-dotnet
+    spec:
+      containers:
+        - name: postgres-dotnet
+          image: 'postgres:14'
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: admin
+            - name: POSTGRES_PASSWORD
+              value: paS5w0rD!
+            - name: POSTGRES_DB
+              value: jamhub
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: pgsqldb
+      volumes:
+        - name: pgsqldb
+          persistentVolumeClaim:
+            claimName: postgresql-volume-claim-dotnet
+---
+# ClusterIp
+apiVersion: v1
+kind: Service
+metadata:
+  name: pgsql-dotnet-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: postgres-dotnet
+  ports:
+    - name: postgres-dotnet
+      protocol: TCP
+      targetPort: 5432
+      port: 5432
+---
+# PersistentVolumeClaim
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgresql-volume-claim-dotnet
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
