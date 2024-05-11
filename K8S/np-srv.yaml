@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: pgsql-np
+  name: pgsql-np-dotnet
   labels:
     app: postgres-dotnet
 spec:
@@ -19,7 +19,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: pgsql-np
+  name: pgsql-np-ruby
   labels:
     app: postgres-rails
 spec:

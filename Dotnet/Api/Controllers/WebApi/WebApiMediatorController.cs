@@ -1,3 +1,4 @@
+using DemoLibrary.Business.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,13 +27,24 @@ public class WebApiMediatorController : ControllerBase
             return BadRequest("Request cannot be null");
         }
 
-        var response = await _mediator.Send(request);
-
-        if (response == null)
+        try
         {
-            return NotFound();
-        }
+            var response = await _mediator.Send(request);
 
-        return Ok(response);
+            if (response == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(response);
+        }
+        catch (EmailAlreadyExistsException ex)
+        {
+            return UnprocessableEntity(ex.Message);
+        }
+        catch (CommitFailedException ex)
+        {
+            return Problem(ex.Message);
+        }
     }
 }

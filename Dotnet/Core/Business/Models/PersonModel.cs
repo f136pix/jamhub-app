@@ -21,10 +21,10 @@ public class PersonModel
     public int Id { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public Instrument Instrument { get; set; }
-    public string CellphoneNumber { get; set; }
+    public Instrument? Instrument { get; set; }
+    public string? CellphoneNumber { get; set; }
     public string Email { get; set; }
     public string? CityName { get; set; }
     public bool Verified { get; set; } = false;
-    public virtual ICollection<PictureModel> Pictures { get; set; }
+    public virtual ICollection<PictureModel>? Pictures { get; set; }
 }

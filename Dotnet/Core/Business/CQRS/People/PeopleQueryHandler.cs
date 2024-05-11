@@ -4,7 +4,7 @@ using MediatR;
 
 namespace DemoLibrary.Business.CQRS.People;
 
-public class PeopleHandler :
+public class PeopleQueryHandler :
     IRequestHandler<GetPeopleListQuery, List<PersonModel>>,
     IRequestHandler<GetPersonByIdQuery, PersonModel>
 {
@@ -17,7 +17,7 @@ public class PeopleHandler :
 
     private readonly IPeopleRepository _repository;
     
-    public PeopleHandler(IPeopleRepository repository)
+    public PeopleQueryHandler(IPeopleRepository repository)
     {
         _repository = repository;
     }

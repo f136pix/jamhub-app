@@ -7,8 +7,9 @@ namespace DemoLibrary.Infraestructure.DataAccess;
 
 public interface IPeopleRepository
 {
+    public Task<bool> IsEmailExistsAsync(string email);
     public Task<List<PersonModel>> GetPeopleAsync();
-    public Task<PersonModel> InsertPersonAsync(string firstName, string lastName);
+    public Task<PersonModel> InsertPersonAsync(PersonModel personModel);
     public Task<PersonModel> GetPersonByIdAsync(int id);
 }
 
@@ -21,6 +22,10 @@ public class PeopleRepository : IPeopleRepository
         _context = context;
     }
 
+    public async Task<bool> IsEmailExistsAsync(string email)
+    {
+        return await _context.People.AnyAsync(p => p.Email == email);    }
+
     public async Task<List<PersonModel>> GetPeopleAsync()
     {
         return await _context.People.ToListAsync();
@@ -31,11 +36,9 @@ public class PeopleRepository : IPeopleRepository
         return await _context.People.FirstOrDefaultAsync(p => p.Id == id);
     }
 
-    public async Task<PersonModel> InsertPersonAsync(string firstName, string lastName)
+    public async Task<PersonModel> InsertPersonAsync(PersonModel personModel)
     {
-        var person = new PersonModel { FirstName = firstName, LastName = lastName };
-        _context.People.Add(person);
-        await _context.SaveChangesAsync();
-        return person;
+        _context.People.Add(personModel);
+        return personModel;
     }
 }
