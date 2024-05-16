@@ -30,4 +30,9 @@ public class LoggerBase
     {
         _log.Information(message);
     }
+
+    public void WriteException(string message)
+    {
+        _log.Error(message);
+    }
 }

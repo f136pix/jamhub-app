@@ -23,6 +23,6 @@ public abstract class RabbitMQBase : IAsyncMessagePublisher
         _queue = queue;
     }
 
-    public abstract Task PublishAsync<T>(T message, RoutingKeys routingKeys);
+    public abstract Task PublishAsync<T>(T message, string exchange, RoutingKeys routingKeys);
     public abstract void Dispose();
 }
