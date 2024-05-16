@@ -21,14 +21,19 @@ builder.Services.AddControllers();
 var isDevelopment = builder.Environment.IsDevelopment();
 if (isDevelopment)
 {
+    //serilog logger
+    Log.Logger = new LoggerConfiguration()
+        .MinimumLevel.Debug()
+        .WriteTo.Console()
+        .CreateLogger();
     Console.WriteLine("--> Is Dev mode");
     Console.WriteLine("--> Local PGSQL DB");
 
-    // local dockerized
+    // local dockerized db
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
     Console.WriteLine($"--> Connection string: {connectionString}");
 
-    // local installed
+    // local installed db
     // var connectionString = "Host=localhost;Database=jamhub;Username=root;Password=Filipeco123!";
 
     // db context
@@ -36,18 +41,14 @@ if (isDevelopment)
         options.UseNpgsql(connectionString, b => b.MigrationsAssembly("Api")));
 
     Console.WriteLine("--> Dev RabbitMq Connection");
-    
-    // rabbimq queue
+
+    // rabbimq connection
     var rabbitMqConfig = builder.Configuration.GetSection("RabbitMQ").Get<BusConfigData>();
     Console.WriteLine("--> " + rabbitMqConfig!.Host);
     builder.Services.AddRabbitConnection(rabbitMqConfig);
     // services.addScoped<IConnection, RabbitMQConnection>();
-    
-    //serilog logger
-    Log.Logger = new LoggerConfiguration()
-        .MinimumLevel.Debug()
-        .WriteTo.Console()
-        .CreateLogger();
+
+    builder.Services.AddRabbitMqMessagePublisher();
 }
 
 // injection of the data access
@@ -60,7 +61,6 @@ builder.Services.AddUnitOfWork();
 // mediatr -> use the assembly of the Core solution
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssemblies(typeof(DemoLibraryMediatREntrypoint).GetTypeInfo().Assembly));
-
 
 
 var app = builder.Build();

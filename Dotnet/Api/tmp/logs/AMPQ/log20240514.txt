@@ -1,0 +1,6 @@
+2024-05-14 20:40:29.506 -03:00 [INF] Initializing RabbitMQ, queue: jamhub
+2024-05-14 22:28:48.305 -03:00 [INF] Initializing RabbitMQ, queue: jamhub
+2024-05-14 22:30:22.799 -03:00 [INF] Initializing RabbitMQ, queue: jamhub
+2024-05-14 22:33:38.042 -03:00 [INF] Initializing RabbitMQ, queue: jamhub
+2024-05-14 22:34:42.439 -03:00 [INF] Initializing RabbitMQ, queue: jamhub
+2024-05-14 22:36:00.477 -03:00 [INF] Initializing RabbitMQ, queue: jamhub

@@ -1,0 +1,30 @@
+2024-05-15 20:43:42.962 -03:00 [INF] Initializing RabbitMQ, queue: jamhub
+2024-05-15 20:46:18.348 -03:00 [INF] Initializing RabbitMQ, queue: jamhub
+2024-05-15 20:46:20.872 -03:00 [INF] Initializing RabbitMQ, queue: jamhub
+2024-05-15 20:46:21.802 -03:00 [INF] Initializing RabbitMQ, queue: jamhub
+2024-05-15 20:46:43.397 -03:00 [INF] Initializing RabbitMQ, queue: jamhub
+2024-05-15 20:47:15.396 -03:00 [INF] Initializing RabbitMQ, queue: jamhub
+2024-05-15 20:47:16.203 -03:00 [INF] Initializing RabbitMQ, queue: jamhub
+2024-05-15 20:51:36.810 -03:00 [INF] Initializing RabbitMQ, queue: jamhub
+2024-05-15 20:51:43.913 -03:00 [INF] --> Published RabbitMQ Message: Queue = jamhub, Routing Key = CreateUser Message = {"Id":8,"FirstName":"string","LastName":"string","Instrument":null,"CellphoneNumber":null,"Email":"sttrg","CityName":null,"Verified":false,"Pictures":null}
+2024-05-15 20:53:49.042 -03:00 [INF] Initializing RabbitMQ, queue: jamhub
+2024-05-15 20:53:58.403 -03:00 [INF] --> Published RabbitMQ Message: Queue = jamhub, Exchange = users.create, Routing Key = CreateUser Message = {"Id":9,"FirstName":"string","LastName":"string","Instrument":null,"CellphoneNumber":null,"Email":"tea","CityName":null,"Verified":false,"Pictures":null}
+2024-05-15 20:59:38.878 -03:00 [INF] Initializing RabbitMQ, queue: jamhub
+2024-05-15 20:59:41.497 -03:00 [INF] --> Published RabbitMQ Message: Queue = jamhub, Exchange = users.create, Routing Key = CreateUser Message = {"Id":10,"FirstName":"string","LastName":"string","Instrument":null,"CellphoneNumber":null,"Email":"strgd","CityName":null,"Verified":false,"Pictures":null}
+2024-05-15 21:02:46.006 -03:00 [INF] Initializing RabbitMQ, queue: jamhub
+2024-05-15 21:02:48.762 -03:00 [ERR] --> RabbitMQ Error: Queue = jamhub, Error = System.InvalidOperationException: Confirms not selected
+   at RabbitMQ.Client.Impl.ModelBase.WaitForConfirms(TimeSpan timeout, Boolean& timedOut)
+   at RabbitMQ.Client.Impl.ModelBase.WaitForConfirms()
+   at RabbitMQ.Client.Impl.AutorecoveringModel.WaitForConfirms()
+   at DemoLibrary.Infraestructure.Messaging.Async.RabbitMqMessagePublisher.PublishAsync[T](T message, String exchange, RoutingKeys routingKey) in /home/filipe/Desktop/Projects/jamhub/Dotnet/Core/Infraestructure/Messaging/_Async/RabbitMqMessagePublisher.cs:line 95
+2024-05-15 21:04:08.832 -03:00 [INF] Initializing RabbitMQ, queue: jamhub
+2024-05-15 21:04:11.508 -03:00 [INF] --> Published RabbitMQ Message: Queue = jamhub, Exchange = users.create, Routing Key = CreateUser Message = {"Id":12,"FirstName":"string","LastName":"string","Instrument":null,"CellphoneNumber":null,"Email":"steag","CityName":null,"Verified":false,"Pictures":null}
+2024-05-15 21:08:21.939 -03:00 [INF] Initializing RabbitMQ, queue: jamhub
+2024-05-15 21:08:24.654 -03:00 [ERR] --> RabbitMQ Error: Queue = jamhub, Error = System.Exception: Message not sent
+   at DemoLibrary.Infraestructure.Messaging.Async.RabbitMqMessagePublisher.PublishAsync[T](T message, String exchange, RoutingKeys routingKey) in /home/filipe/Desktop/Projects/jamhub/Dotnet/Core/Infraestructure/Messaging/_Async/RabbitMqMessagePublisher.cs:line 99
+2024-05-15 21:10:16.007 -03:00 [INF] Initializing RabbitMQ, queue: jamhub
+2024-05-15 21:10:28.592 -03:00 [INF] Error executing the message publisher : Message not recieved in the Broker
+2024-05-15 21:10:28.610 -03:00 [ERR] --> RabbitMQ Error: Queue = jamhub, Error = System.Exception: Message not recieved in the Broker
+   at DemoLibrary.Infraestructure.Messaging.Async.RabbitMqMessagePublisher.PublishAsync[T](T message, String exchange, RoutingKeys routingKey) in /home/filipe/Desktop/Projects/jamhub/Dotnet/Core/Infraestructure/Messaging/_Async/RabbitMqMessagePublisher.cs:line 99
+2024-05-15 21:49:50.831 -03:00 [INF] Initializing RabbitMQ, queue: jamhub
+2024-05-15 21:49:53.471 -03:00 [INF] --> Published RabbitMQ Message: Queue = jamhub, Exchange = users.create, Routing Key = CreateUser Message = {"Id":15,"FirstName":"string","LastName":"string","Instrument":null,"CellphoneNumber":null,"Email":"strifdsng","CityName":null,"Verified":false,"Pictures":null}
