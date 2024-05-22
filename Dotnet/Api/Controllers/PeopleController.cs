@@ -1,4 +1,5 @@
 using Api.Controllers.WebApi;
+using DemoLibrary.Application.CQRS.People;
 using DemoLibrary.Business.CQRS.People;
 using DemoLibrary.Models;
 using MediatR;

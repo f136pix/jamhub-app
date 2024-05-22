@@ -24,7 +24,8 @@ public class PeopleRepository : IPeopleRepository
 
     public async Task<bool> IsEmailExistsAsync(string email)
     {
-        return await _context.People.AnyAsync(p => p.Email == email);    }
+        return await _context.People.AnyAsync(p => p.Email == email);
+    }
 
     public async Task<List<PersonModel>> GetPeopleAsync()
     {
@@ -33,7 +34,9 @@ public class PeopleRepository : IPeopleRepository
 
     public async Task<PersonModel> GetPersonByIdAsync(int id)
     {
-        return await _context.People.FirstOrDefaultAsync(p => p.Id == id);
+        return await _context.People.
+            Include(p => p.Bands)
+            .FirstOrDefaultAsync(p => p.Id == id);
     }
 
     public async Task<PersonModel> InsertPersonAsync(PersonModel personModel)

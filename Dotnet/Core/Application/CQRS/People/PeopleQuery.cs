@@ -1,7 +1,7 @@
 using DemoLibrary.Models;
 using MediatR;
 
-namespace DemoLibrary.Business.CQRS.People;
+namespace DemoLibrary.Application.CQRS.People;
 
 public record GetPeopleListQuery() :  IRequest<List<PersonModel>>;
 

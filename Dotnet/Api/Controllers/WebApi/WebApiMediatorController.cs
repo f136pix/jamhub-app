@@ -1,4 +1,5 @@
 using DemoLibrary.Business.Exceptions;
+using DemoLibrary.Domain.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,12 +39,21 @@ public class WebApiMediatorController : ControllerBase
 
             return Ok(response);
         }
-        catch (EmailAlreadyExistsException ex)
+        catch (AlreadyExistsException ex)
         {
             return UnprocessableEntity(ex.Message);
         }
         catch (CommitFailedException ex)
         {
+            return Problem(ex.Message);
+        }
+        catch (PersonNotFoundException ex)
+        {
+            return NotFound(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            Console.Write(ex.ToString());
             return Problem(ex.Message);
         }
     }

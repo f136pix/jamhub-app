@@ -1,3 +1,5 @@
+using DemoLibrary.Application.CQRS.People;
+using DemoLibrary.Domain.Models;
 using DemoLibrary.Infraestructure.DataAccess;
 using DemoLibrary.Models;
 using MediatR;
@@ -28,9 +30,11 @@ public class PeopleQueryHandler :
         return people;
     }
 
-    public async Task<PersonModel> Handle(GetPersonByIdQuery request, CancellationToken cancellationToken)
+public async Task<PersonModel> Handle(GetPersonByIdQuery request, CancellationToken cancellationToken)
     {
         var user =  await _repository.GetPersonByIdAsync(request.id);
+        // Console.WriteLine("--> ",user.Bands.Count);
+        
         return user;
     }
 }

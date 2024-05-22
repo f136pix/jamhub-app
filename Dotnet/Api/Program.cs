@@ -16,7 +16,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(opt =>
+    {
+        opt.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+        opt.JsonSerializerOptions.MaxDepth = 32;
+    });
 
 var isDevelopment = builder.Environment.IsDevelopment();
 if (isDevelopment)
@@ -62,6 +67,8 @@ builder.Services.AddUnitOfWork();
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssemblies(typeof(DemoLibraryMediatREntrypoint).GetTypeInfo().Assembly));
 
+// builder.Services.AddAutoMapper(typeof(DemoLibraryMediatREntrypoint).Assembly);
+builder.Services.AddAutoMapper(typeof(DemoLibraryMediatREntrypoint).Assembly);
 
 var app = builder.Build();
 

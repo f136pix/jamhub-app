@@ -2,6 +2,7 @@
 using DemoLibrary.Infraestructure.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240516191802_BandUsersIntermediateTableFIXTRUE")]
+    partial class BandUsersIntermediateTableFIXTRUE
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,9 +73,6 @@ namespace Api.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("CreatorId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Genre")
                         .HasColumnType("text");
 
@@ -81,8 +81,6 @@ namespace Api.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CreatorId");
 
                     b.HasIndex("Id")
                         .IsUnique();
@@ -160,17 +158,6 @@ namespace Api.Migrations
                         .IsRequired();
 
                     b.Navigation("Person");
-                });
-
-            modelBuilder.Entity("DemoLibrary.Domain.Models.BandModel", b =>
-                {
-                    b.HasOne("DemoLibrary.Models.PersonModel", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Creator");
                 });
 
             modelBuilder.Entity("DemoLibrary.Models.PersonModel", b =>

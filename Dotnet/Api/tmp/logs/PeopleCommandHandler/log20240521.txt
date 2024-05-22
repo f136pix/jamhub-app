@@ -1,0 +1,16 @@
+2024-05-21 12:07:34.853 -03:00 [INF] --> Creating band with name: string
+2024-05-21 14:57:13.803 -03:00 [INF] --> Creating band with name: string
+2024-05-21 14:58:55.703 -03:00 [INF] --> Creating band with name: string
+2024-05-21 14:59:48.441 -03:00 [INF] --> Creating band with name: string
+2024-05-21 15:15:30.414 -03:00 [INF] --> Creating band with name: string
+2024-05-21 18:28:36.976 -03:00 [INF] --> Creating band with name: string
+2024-05-21 18:37:12.764 -03:00 [INF] --> Creating band with name: string
+2024-05-21 18:38:45.961 -03:00 [INF] --> Creating band with name: string
+2024-05-21 18:38:46.044 -03:00 [INF] --> Person with name string created succefully!
+2024-05-21 18:38:49.229 -03:00 [INF] --> Creating band with name: string
+2024-05-21 18:46:05.045 -03:00 [INF] --> Creating band with name: string
+2024-05-21 18:46:08.726 -03:00 [INF] --> Creating band with name: sfdasg
+2024-05-21 20:46:53.041 -03:00 [INF] --> Creating band with name: string
+2024-05-21 20:47:00.065 -03:00 [INF] --> Creating band with name: strjgng
+2024-05-21 20:47:11.202 -03:00 [INF] --> Creating band with name: strjgng
+2024-05-21 20:47:11.654 -03:00 [INF] --> Person with name strjgng created succefully!

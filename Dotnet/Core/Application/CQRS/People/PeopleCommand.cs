@@ -1,6 +1,7 @@
+using DemoLibrary.Application.Dtos.People;
 using DemoLibrary.Models;
 using MediatR;
 
-namespace DemoLibrary.Business.CQRS.People;
+namespace DemoLibrary.Application.CQRS.People;
 
-public record CreatePersonCommand(string FirstName, string LastName, string Email) : IRequest<PersonModel>;
+public record CreatePersonCommand(CreatePersonDto dto) : IRequest<PersonModel>;

@@ -2,6 +2,7 @@
 using DemoLibrary.Infraestructure.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240516184031_BandUsersIntermediateTableFix")]
+    partial class BandUsersIntermediateTableFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -20,21 +23,6 @@ namespace Api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
-
-            modelBuilder.Entity("BandModelPersonModel", b =>
-                {
-                    b.Property<int>("BandsId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("MembersId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("BandsId", "MembersId");
-
-                    b.HasIndex("MembersId");
-
-                    b.ToTable("BandModelPersonModel");
-                });
 
             modelBuilder.Entity("DemoLibrary.Business.Models.PictureModel", b =>
                 {
@@ -70,9 +58,6 @@ namespace Api.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("CreatorId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Genre")
                         .HasColumnType("text");
 
@@ -82,8 +67,6 @@ namespace Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CreatorId");
-
                     b.HasIndex("Id")
                         .IsUnique();
 
@@ -91,6 +74,25 @@ namespace Api.Migrations
                         .IsUnique();
 
                     b.ToTable("Band");
+                });
+
+            modelBuilder.Entity("DemoLibrary.Models.BandUserModel", b =>
+                {
+                    b.Property<int>("PersonId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("BandId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("integer");
+
+                    b.HasKey("PersonId", "BandId");
+
+                    b.HasIndex("BandId", "PersonId")
+                        .IsUnique();
+
+                    b.ToTable("BandUser");
                 });
 
             modelBuilder.Entity("DemoLibrary.Models.PersonModel", b =>
@@ -136,21 +138,6 @@ namespace Api.Migrations
                     b.ToTable("People");
                 });
 
-            modelBuilder.Entity("BandModelPersonModel", b =>
-                {
-                    b.HasOne("DemoLibrary.Domain.Models.BandModel", null)
-                        .WithMany()
-                        .HasForeignKey("BandsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DemoLibrary.Models.PersonModel", null)
-                        .WithMany()
-                        .HasForeignKey("MembersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("DemoLibrary.Business.Models.PictureModel", b =>
                 {
                     b.HasOne("DemoLibrary.Models.PersonModel", "Person")
@@ -162,19 +149,34 @@ namespace Api.Migrations
                     b.Navigation("Person");
                 });
 
-            modelBuilder.Entity("DemoLibrary.Domain.Models.BandModel", b =>
+            modelBuilder.Entity("DemoLibrary.Models.BandUserModel", b =>
                 {
-                    b.HasOne("DemoLibrary.Models.PersonModel", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId")
+                    b.HasOne("DemoLibrary.Domain.Models.BandModel", "Band")
+                        .WithMany("BandUsers")
+                        .HasForeignKey("BandId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Creator");
+                    b.HasOne("DemoLibrary.Models.PersonModel", "Person")
+                        .WithMany("BandUsers")
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Band");
+
+                    b.Navigation("Person");
+                });
+
+            modelBuilder.Entity("DemoLibrary.Domain.Models.BandModel", b =>
+                {
+                    b.Navigation("BandUsers");
                 });
 
             modelBuilder.Entity("DemoLibrary.Models.PersonModel", b =>
                 {
+                    b.Navigation("BandUsers");
+
                     b.Navigation("Pictures");
                 });
 #pragma warning restore 612, 618

@@ -11,6 +11,7 @@ namespace DemoLibrary.CrossCutting
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<IPeopleRepository, PeopleRepository>();
+            services.AddScoped<IBandRepository, BandRepository>();
             return services;
         }
 
