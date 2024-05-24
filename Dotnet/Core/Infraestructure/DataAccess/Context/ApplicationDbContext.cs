@@ -29,6 +29,7 @@ public class ApplicationDbContext : DbContext
             // bands can haveMany people/members
             .WithMany(b => b.Members);
 
+        // bands have a creator
         modelBuilder.Entity<BandModel>()
             .HasOne(b => b.Creator);
     }

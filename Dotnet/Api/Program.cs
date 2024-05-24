@@ -24,6 +24,8 @@ builder.Services.AddControllers()
     });
 
 var isDevelopment = builder.Environment.IsDevelopment();
+var isProduction = builder.Environment.IsProduction();
+
 if (isDevelopment)
 {
     //serilog logger
@@ -33,6 +35,38 @@ if (isDevelopment)
         .CreateLogger();
     Console.WriteLine("--> Is Dev mode");
     Console.WriteLine("--> Local PGSQL DB");
+
+    // local dockerized db
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    Console.WriteLine($"--> Connection string: {connectionString}");
+
+    // local installed db
+    // var connectionString = "Host=localhost;Database=jamhub;Username=root;Password=Filipeco123!";
+
+    // db context
+    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseNpgsql(connectionString, b => b.MigrationsAssembly("Api")));
+
+    Console.WriteLine("--> Dev RabbitMq Connection");
+
+    // rabbimq connection
+    var rabbitMqConfig = builder.Configuration.GetSection("RabbitMQ").Get<BusConfigData>();
+    Console.WriteLine("--> " + rabbitMqConfig!.Host);
+    builder.Services.AddRabbitConnection(rabbitMqConfig);
+    // services.addScoped<IConnection, RabbitMQConnection>();
+
+    builder.Services.AddRabbitMqMessagePublisher();
+}
+
+if (isProduction)
+{
+
+    Log.Logger = new LoggerConfiguration()
+        .MinimumLevel.Debug()
+        .WriteTo.Console()
+        .CreateLogger();
+    Console.WriteLine("--> Is Prod mode");
+    Console.WriteLine("--> K8S PGSQL DB");
 
     // local dockerized db
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");

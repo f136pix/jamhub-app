@@ -1,0 +1,34 @@
+# Dotnet image deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dotnet-server-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dotnet-server
+  template:
+    metadata:
+      labels:
+        app: dotnet-server
+    spec:
+      containers:
+        - name: dotnet-server
+          image: f136pix/jamhub-dotnet:latest
+---
+# ClusterIp 
+# assigns a internal ip inside of the kubernetes container for the service
+apiVersion: v1
+kind: Service
+metadata:
+  name: dotnet-server-srv # internal endpoint
+spec:
+  type: ClusterIP
+  selector:
+    app: dotnet-server
+  ports:
+    - name: dotnet-server
+      protocol: TCP
+      targetPort: 8080
+      port: 8080

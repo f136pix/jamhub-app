@@ -1,0 +1,2 @@
+2024-05-22 14:16:34.689 -03:00 [INF] --> Creating band with name: string
+2024-05-22 14:18:56.494 -03:00 [INF] --> Creating band with name: string
