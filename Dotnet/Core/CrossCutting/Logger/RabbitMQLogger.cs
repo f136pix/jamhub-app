@@ -12,6 +12,11 @@ namespace DemoLibrary.CrossCutting.Logger
                 $"--> Published RabbitMQ Message: Queue = {queue}, Exchange = {exchange}, Routing Key = {routingKey} Message = {message}");
         }
 
+        public void LogConsumerRecievedMessage(string queue, string routingKey, string message)
+        {
+            WriteLog($"--> Consumer Recieved Message: Queue = {queue}, Routing Key = {routingKey} Message = {message}");
+        }
+
         public void LogRabbitMqError(string queue, string error)
         {
             WriteException($"--> RabbitMQ Error: Queue = {queue}, Error = {error}");

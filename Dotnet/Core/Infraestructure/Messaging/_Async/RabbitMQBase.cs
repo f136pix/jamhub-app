@@ -13,13 +13,13 @@ public abstract class RabbitMQBase : IAsyncMessagePublisher
         string queue
     )
     {
-        // Conexão com o rabbitmq
+        // rabbitmq connection
         _rabbitConnection = rabbitConnection;
 
-        // Canal de comunicação
+        // communication channel
         _channel = _rabbitConnection.CreateModel();
 
-        // Fila que esta sendo "escutada"
+        // queue being heard
         _queue = queue;
     }
 

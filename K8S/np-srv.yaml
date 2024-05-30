@@ -29,7 +29,7 @@ spec:
       targetPort: 5432
       nodePort: 30007
   selector:
-    app: dotnet-server
+    app: postgres-dotnet
 ---
 #exposes our rails pgsql at port 30006
 apiVersion: v1

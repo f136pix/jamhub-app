@@ -1,4 +1,5 @@
 using System.Configuration;
+using System.Net.Mime;
 using System.Reflection;
 using DemoLibrary;
 using DemoLibrary.CrossCutting;
@@ -53,14 +54,15 @@ if (isDevelopment)
     var rabbitMqConfig = builder.Configuration.GetSection("RabbitMQ").Get<BusConfigData>();
     Console.WriteLine("--> " + rabbitMqConfig!.Host);
     builder.Services.AddRabbitConnection(rabbitMqConfig);
+    builder.Services.InitializeRabbitMQQueue("jamhub");
     // services.addScoped<IConnection, RabbitMQConnection>();
 
     builder.Services.AddRabbitMqMessagePublisher();
+    builder.Services.AddRabbitMqMessageConsumer();
 }
 
 if (isProduction)
 {
-
     Log.Logger = new LoggerConfiguration()
         .MinimumLevel.Debug()
         .WriteTo.Console()
@@ -72,6 +74,7 @@ if (isProduction)
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
     Console.WriteLine($"--> Connection string: {connectionString}");
 
+
     // local installed db
     // var connectionString = "Host=localhost;Database=jamhub;Username=root;Password=Filipeco123!";
 
@@ -79,8 +82,10 @@ if (isProduction)
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseNpgsql(connectionString, b => b.MigrationsAssembly("Api")));
 
-    Console.WriteLine("--> Dev RabbitMq Connection");
+    // run pending migrations 
 
+
+    Console.WriteLine("--> Prod Connection");
     // rabbimq connection
     var rabbitMqConfig = builder.Configuration.GetSection("RabbitMQ").Get<BusConfigData>();
     Console.WriteLine("--> " + rabbitMqConfig!.Host);
@@ -88,7 +93,11 @@ if (isProduction)
     // services.addScoped<IConnection, RabbitMQConnection>();
 
     builder.Services.AddRabbitMqMessagePublisher();
+    builder.Services.AddRabbitMqMessageConsumer();
 }
+
+// Http client
+builder.Services.AddHttpPublisher();
 
 // injection of the data access
 builder.Services.AddRepositories();
@@ -105,6 +114,29 @@ builder.Services.AddMediatR(cfg =>
 builder.Services.AddAutoMapper(typeof(DemoLibraryMediatREntrypoint).Assembly);
 
 var app = builder.Build();
+var serviceScopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
+
+app.RunRabbitMqMessageConsumer();
+
+// run pending migrations
+// using (var scope = serviceScopeFactory.CreateScope())
+// {
+//     // Get the DataContext
+//     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+//         
+//     // Check if any migrations have been applied (i.e., tables have been created)
+//     var appliedMigrations = context.Database.GetAppliedMigrations().ToList();
+//
+//     if (!appliedMigrations.Any())
+//     {
+//             
+//         Console.WriteLine("--> Applying migrations");
+//         // If no migrations have been applied, apply the migrations
+//         context.Database.Migrate();
+//         Console.WriteLine("--> Migrations applied");
+//     }
+// }
+
 
 app.MapControllers();
 
@@ -114,6 +146,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
+if (app.Environment.IsProduction())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
 
 app.UseHttpsRedirection();
 

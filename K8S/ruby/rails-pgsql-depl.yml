@@ -23,9 +23,9 @@ spec:
             - name: POSTGRES_USER
               value: admin
             - name: POSTGRES_PASSWORD
-              value:name: POSTGRES_DB
-
-              value: jamhub
+              value: paS5w0rD!
+            - name: POSTGRES_DB
+              value: jamhub-auth
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: pgsqldb

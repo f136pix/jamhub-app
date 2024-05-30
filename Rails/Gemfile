@@ -11,6 +11,8 @@ gem 'sqlite3', '~> 1.4'
 gem 'pg'
 # dotenv
 gem 'dotenv-rails'
+# rabbitmq
+gem 'bunny'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets

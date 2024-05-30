@@ -270,8 +270,8 @@ Devise.setup do |config|
   config.navigational_formats = []
   
   config.jwt do |jwt|
-    jwt.secret = ENV['DEVISE_JWT_SECRET_KEY']
-    # jwt.secret = "21e61274038da611eeb0ffa54b96662bb181f8e0cdd00154f4d5b3b445df33774c871b4db7d44a5b61ce9574220a6c49b769a9eda4d24cf85b7dbd41171caacc"
+    # jwt.secret = ENV['DEVISE_JWT_SECRET_KEY']
+    jwt.secret = "21e61274038da611eeb0ffa54b96662bb181f8e0cdd00154f4d5b3b445df33774c871b4db7d44a5b61ce9574220a6c49b769a9eda4d24cf85b7dbd41171caacc"
     # post to /sign_in dispatches a jwt to client
     jwt.dispatch_requests = [
       ['POST', %r{^/auth/login$}]
