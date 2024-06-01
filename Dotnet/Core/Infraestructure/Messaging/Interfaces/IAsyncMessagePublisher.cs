@@ -1,4 +1,5 @@
-namespace DemoLibrary.Infraestructure.Messaging.Async;
+using DemoLibrary.Application.Services.Messaging;
+
 
 public interface IAsyncMessagePublisher
 {

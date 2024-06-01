@@ -1,4 +1,5 @@
 using System.Text;
+using DemoLibrary.Application.Services.Messaging;
 using DemoLibrary.CrossCutting.Logger;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
@@ -6,14 +7,8 @@ using Serilog;
 
 namespace DemoLibrary.Infraestructure.Messaging.Async;
 
-using DemoLibrary.Infraestructure.Messaging;
 
-public enum RoutingKeys
-{
-    CreateUser,
-    UpdateUser,
-    DeleteUser,
-}
+
 
 public class RabbitMqMessagePublisher : RabbitMQBase
 {
@@ -34,7 +29,7 @@ public class RabbitMqMessagePublisher : RabbitMQBase
 
     private void InitializeRabbitMq()
     {
-        _logger.WriteLog($"Initializing RabbitMQ, queue: {_queue}");
+        _logger.WriteLog($"Initializing RabbitMQ, exchange bound to queue: {_queue}");
         using (var channel = _rabbitConnection.CreateModel())
         {
             // sends 1 message of any size at time // only sends next when prev is processed
@@ -50,7 +45,8 @@ public class RabbitMqMessagePublisher : RabbitMQBase
                 { "x-max-priority", 10 }
             };
 
-            // create queue if doesnt exists
+            // create queue if it doesnt exists and
+            // bind exchange to queue
             channel.QueueDeclare(
                 queue: _queue,
                 durable: true,
@@ -108,6 +104,8 @@ public class RabbitMqMessagePublisher : RabbitMQBase
             _logger.LogRabbitMqError(_queue, ex.Message);
         }
     }
+
+    
 
     public override void Dispose()
     {

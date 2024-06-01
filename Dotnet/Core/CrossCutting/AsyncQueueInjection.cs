@@ -1,3 +1,4 @@
+using DemoLibrary.Application.Services.Messaging;
 using DemoLibrary.Infraestructure.Messaging.Async;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -61,8 +62,10 @@ namespace DemoLibrary.CrossCutting
                 var rabbitConnection = sp.GetRequiredService<IConnection>();
                 Console.WriteLine($"-->Publisher connection : {rabbitConnection}");
 
+                var asyncProcessorService = sp.GetRequiredService<IAsyncProcessorService>();
+
                 // adds consumer to the service collection // dependency injection
-                return new RabbitMqMessageConsumer(rabbitConnection, "jamhub");
+                return new RabbitMqMessageConsumer(rabbitConnection, "jamhub", asyncProcessorService);
             });
             return services;
         }

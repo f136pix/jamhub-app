@@ -18,7 +18,9 @@ public class AsyncProcessorService : IAsyncProcessorService
         // relates the routing key to the fucntion being called
         _handlers = new Dictionary<string, Action<object>>
         {
+            //{Acess key, Function to call}
             { nameof(RoutingKeys.CreateUser), HandleCreateUser },
+            { "user.registered", HandleUserRegistered },
             // { nameof(RoutingKeys.UpdateUser), HandleUpdateUser },
             // { nameof(RoutingKeys.DeleteUser), HandleDeleteUser }
         };
@@ -33,6 +35,12 @@ public class AsyncProcessorService : IAsyncProcessorService
     private void HandleCreateUser(object message)
     {
         //var command = JsonConvert.DeserializeObject<CreateUserCommand>(message);
+        //_mediator.Send(command);
+    }
+
+    private void HandleUserRegistered(object message)
+    {
+        Console.Write(message);
         //_mediator.Send(command);
     }
 }

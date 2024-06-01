@@ -1,5 +1,6 @@
 using DemoLibrary.Application.CQRS.People;
 using DemoLibrary.Application.Dtos.People;
+using DemoLibrary.Application.Services.Messaging;
 using DemoLibrary.Business.Exceptions;
 using DemoLibrary.CrossCutting.Logger;
 using DemoLibrary.Infraestructure.DataAccess;

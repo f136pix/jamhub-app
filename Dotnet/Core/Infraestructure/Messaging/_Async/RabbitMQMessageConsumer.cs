@@ -1,4 +1,5 @@
 using System;
+using DemoLibrary.Application.Services.Messaging;
 using DemoLibrary.CrossCutting.Logger;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
@@ -8,19 +9,21 @@ namespace DemoLibrary.Infraestructure.Messaging.Async;
 // handles message processing logic
 public class RabbitMqMessageConsumer : RabbitMqBaseConsumer
 {
-    public RabbitMqMessageConsumer(IConnection rabbitConnection, string queue)
+    private readonly IAsyncProcessorService _asyncProcessorService;
+    public RabbitMqMessageConsumer(IConnection rabbitConnection, string queue, IAsyncProcessorService asyncProcessorService)
         : base(rabbitConnection, queue)
     {
-        
+        _asyncProcessorService = asyncProcessorService;
         //InitializeConsumer();
     }
 
     protected override void HandleMessage(string message, string routingKey)
     {
-        Console.WriteLine("ola");
-        // deserialize the message to T generic type and process it
+        // deserialize the json string to dotnet object 
         var deserializedMessage = JsonConvert.DeserializeObject<object>(message);
         Console.WriteLine($"--> Deserialized message = {deserializedMessage}");
-        Console.WriteLine(deserializedMessage);
+        
+        _asyncProcessorService.ProcessMessage(message, routingKey);
+        
     }
 }

@@ -2,6 +2,7 @@ using System.Configuration;
 using System.Net.Mime;
 using System.Reflection;
 using DemoLibrary;
+using DemoLibrary.Application.Services.Messaging;
 using DemoLibrary.CrossCutting;
 using DemoLibrary.CrossCutting.Queues;
 using DemoLibrary.CrossCutting.Queues.Configuration;
@@ -27,6 +28,7 @@ builder.Services.AddControllers()
 var isDevelopment = builder.Environment.IsDevelopment();
 var isProduction = builder.Environment.IsProduction();
 
+
 if (isDevelopment)
 {
     //serilog logger
@@ -49,16 +51,6 @@ if (isDevelopment)
         options.UseNpgsql(connectionString, b => b.MigrationsAssembly("Api")));
 
     Console.WriteLine("--> Dev RabbitMq Connection");
-
-    // rabbimq connection
-    var rabbitMqConfig = builder.Configuration.GetSection("RabbitMQ").Get<BusConfigData>();
-    Console.WriteLine("--> " + rabbitMqConfig!.Host);
-    builder.Services.AddRabbitConnection(rabbitMqConfig);
-    builder.Services.InitializeRabbitMQQueue("jamhub");
-    // services.addScoped<IConnection, RabbitMQConnection>();
-
-    builder.Services.AddRabbitMqMessagePublisher();
-    builder.Services.AddRabbitMqMessageConsumer();
 }
 
 if (isProduction)
@@ -86,15 +78,8 @@ if (isProduction)
 
 
     Console.WriteLine("--> Prod Connection");
-    // rabbimq connection
-    var rabbitMqConfig = builder.Configuration.GetSection("RabbitMQ").Get<BusConfigData>();
-    Console.WriteLine("--> " + rabbitMqConfig!.Host);
-    builder.Services.AddRabbitConnection(rabbitMqConfig);
-    // services.addScoped<IConnection, RabbitMQConnection>();
-
-    builder.Services.AddRabbitMqMessagePublisher();
-    builder.Services.AddRabbitMqMessageConsumer();
 }
+
 
 // Http client
 builder.Services.AddHttpPublisher();
@@ -103,15 +88,29 @@ builder.Services.AddHttpPublisher();
 builder.Services.AddRepositories();
 builder.Services.AddUnitOfWork();
 
-// data context
-// builder.Services.AddSingleton<IDataAccess, DemoDataAccess>();
-
 // mediatr -> use the assembly of the Core solution
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssemblies(typeof(DemoLibraryMediatREntrypoint).GetTypeInfo().Assembly));
 
-// builder.Services.AddAutoMapper(typeof(DemoLibraryMediatREntrypoint).Assembly);
+// automapper
 builder.Services.AddAutoMapper(typeof(DemoLibraryMediatREntrypoint).Assembly);
+
+// services
+// builder.Services.AddScoped<IAsyncProcessorService, AsyncProcessorService>();
+builder.Services.AddSingleton<IAsyncProcessorService, AsyncProcessorService>();
+
+// rabbimq connection
+var rabbitMqConfig = builder.Configuration.GetSection("RabbitMQ").Get<BusConfigData>();
+Console.WriteLine("--> " + rabbitMqConfig!.Host);
+builder.Services.AddRabbitConnection(rabbitMqConfig);
+// services.addScoped<IConnection, RabbitMQConnection>();
+
+// creates queue if not exists
+builder.Services.InitializeRabbitMQQueue("jamhub");
+
+// rabbitmq publisher and consumer
+builder.Services.AddRabbitMqMessagePublisher();
+builder.Services.AddRabbitMqMessageConsumer();
 
 var app = builder.Build();
 var serviceScopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();

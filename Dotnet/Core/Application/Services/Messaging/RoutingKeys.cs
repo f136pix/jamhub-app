@@ -1,6 +1,11 @@
 namespace DemoLibrary.Application.Services.Messaging;
 
-public class RoutingKeys
-{
+
     
+public enum RoutingKeys
+{
+    CreateUser,
+    UpdateUser,
+    DeleteUser,
+    user_registered
 }

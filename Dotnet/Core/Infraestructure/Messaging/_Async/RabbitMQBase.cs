@@ -1,3 +1,4 @@
+using DemoLibrary.Application.Services.Messaging;
 using RabbitMQ.Client;
 
 namespace DemoLibrary.Infraestructure.Messaging.Async;

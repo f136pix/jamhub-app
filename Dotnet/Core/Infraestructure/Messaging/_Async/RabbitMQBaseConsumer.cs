@@ -74,7 +74,6 @@ public abstract class RabbitMqBaseConsumer : IAsyncMessageConsumer
         // fired once a message is received
         consumer.Received += (model, ea) =>
         {
-            Console.WriteLine("--> ola");
             var body = ea.Body.ToArray();
             var message = Encoding.UTF8.GetString(body);
             HandleMessage(message, ea.RoutingKey.ToString());
