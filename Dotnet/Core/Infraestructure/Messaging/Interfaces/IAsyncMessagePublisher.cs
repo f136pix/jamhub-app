@@ -3,7 +3,7 @@ using DemoLibrary.Application.Services.Messaging;
 
 public interface IAsyncMessagePublisher
 {
-    Task PublishAsync<T>(T message, string exchange, RoutingKeys routingKeys);
+    Task<bool> PublishAsync<T>(T message, string exchange, string routingKeys);
     
     void Dispose();
 }

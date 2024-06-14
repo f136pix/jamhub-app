@@ -1,40 +1,45 @@
 using DemoLibrary.Application.Services.Messaging;
+using DemoLibrary.Infraestructure.Messaging._Mail;
 using DemoLibrary.Infraestructure.Messaging.Async;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 
 namespace DemoLibrary.CrossCutting
 {
     public static class AsyncQueueInjection
     {
-        public static IServiceCollection InitializeRabbitMQQueue(this IServiceCollection services, string queue)
+        public static IServiceCollection InitializeRabbitMQQueues(this IServiceCollection services, List<string> queues)
         {
             var rabbitConnection = services.BuildServiceProvider().GetService<IConnection>();
-            using (var channel = rabbitConnection.CreateModel())
+            foreach (var queue in queues)
             {
-                // sends 1 message of any size at time // only sends next when prev is processed
-                channel.BasicQos(
-                    prefetchSize: 0,
-                    prefetchCount: 1,
-                    global: false
-                );
-
-                // queue parameters
-                var args = new Dictionary<string, object>
+                using (var channel = rabbitConnection.CreateModel())
                 {
-                    { "x-max-priority", 10 }
-                };
+                    // sends 1 message of any size at time // only sends next when prev is processed
+                    channel.BasicQos(
+                        prefetchSize: 0,
+                        prefetchCount: 1,
+                        global: false
+                    );
 
-                // create queue if doesnt exists
-                channel.QueueDeclare(
-                    queue: queue,
-                    durable: true,
-                    exclusive: false,
-                    autoDelete: false,
-                    arguments: args
-                );
+                    // queue parameters
+                    var args = new Dictionary<string, object>
+                    {
+                        { "x-max-priority", 10 }
+                    };
+
+                    // create queue if doesnt exists
+                    channel.QueueDeclare(
+                        queue: queue,
+                        durable: true,
+                        exclusive: false,
+                        autoDelete: false,
+                        arguments: args
+                    );
+                }
             }
 
             return services;
@@ -48,8 +53,10 @@ namespace DemoLibrary.CrossCutting
                 var rabbitConnection = sp.GetRequiredService<IConnection>();
                 Console.WriteLine($"-->Publisher connection : {rabbitConnection}");
 
+                var rabbitMqSettings = sp.GetRequiredService<IOptions<RabbitMQSettings>>();
+
                 // adds publisher to the service collection // dependency injection
-                return new RabbitMqMessagePublisher(rabbitConnection, "jamhub");
+                return new RabbitMqMessagePublisher(rabbitConnection, "dotnet.rails", rabbitMqSettings);
             });
             return services;
         }
@@ -65,7 +72,7 @@ namespace DemoLibrary.CrossCutting
                 var asyncProcessorService = sp.GetRequiredService<IAsyncProcessorService>();
 
                 // adds consumer to the service collection // dependency injection
-                return new RabbitMqMessageConsumer(rabbitConnection, "jamhub", asyncProcessorService);
+                return new RabbitMqMessageConsumer(rabbitConnection, "rails.dotnet", asyncProcessorService);
             });
             return services;
         }

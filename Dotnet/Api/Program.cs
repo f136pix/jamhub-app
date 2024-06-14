@@ -8,6 +8,7 @@ using DemoLibrary.CrossCutting.Queues;
 using DemoLibrary.CrossCutting.Queues.Configuration;
 using DemoLibrary.Infraestructure.DataAccess;
 using DemoLibrary.Infraestructure.DataAccess.Context;
+using DemoLibrary.Infraestructure.Messaging._Mail;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Serilog;
@@ -21,7 +22,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers()
     .AddJsonOptions(opt =>
     {
-        opt.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+        // opt.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+        
+        opt.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+
         opt.JsonSerializerOptions.MaxDepth = 32;
     });
 
@@ -99,18 +103,27 @@ builder.Services.AddAutoMapper(typeof(DemoLibraryMediatREntrypoint).Assembly);
 // builder.Services.AddScoped<IAsyncProcessorService, AsyncProcessorService>();
 builder.Services.AddSingleton<IAsyncProcessorService, AsyncProcessorService>();
 
+// mailer sender
+
 // rabbimq connection
 var rabbitMqConfig = builder.Configuration.GetSection("RabbitMQ").Get<BusConfigData>();
+builder.Services.Configure<RabbitMQSettings>(builder.Configuration.GetSection("RabbitMQ"));
 Console.WriteLine("--> " + rabbitMqConfig!.Host);
 builder.Services.AddRabbitConnection(rabbitMqConfig);
 // services.addScoped<IConnection, RabbitMQConnection>();
 
 // creates queue if not exists
-builder.Services.InitializeRabbitMQQueue("jamhub");
+var queues = new List<string> { "dotnet.rails", "rails.dotnet" };
+builder.Services.InitializeRabbitMQQueues(queues);
 
 // rabbitmq publisher and consumer
 builder.Services.AddRabbitMqMessagePublisher();
 builder.Services.AddRabbitMqMessageConsumer();
+
+// email service
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+builder.Services.AddEmailService();
+
 
 var app = builder.Build();
 var serviceScopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();

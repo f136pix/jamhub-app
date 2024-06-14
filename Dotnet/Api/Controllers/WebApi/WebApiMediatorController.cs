@@ -5,16 +5,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers.WebApi;
 
-public class WebApiMediatorController : ControllerBase
+public partial class WebApiMediatorController : BaseApiMediator
 {
     protected readonly IMediator _mediator;
+    
 
-    public WebApiMediatorController(IMediator mediator)
+    public WebApiMediatorController(IMediator mediator) : base(mediator)
     {
-        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        _mediator = mediator;
     }
-
-    protected async Task<ActionResult<TResponse>> HandleRequest<TRequest, TResponse>(Func<TRequest> requestFunc)
+   
+    protected override async Task<ActionResult<TResponse>> HandleRequest<TRequest, TResponse>(Func<TRequest> requestFunc)
     {
         if (requestFunc == null)
         {

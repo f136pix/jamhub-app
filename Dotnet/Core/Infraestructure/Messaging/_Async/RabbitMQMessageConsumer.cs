@@ -17,13 +17,12 @@ public class RabbitMqMessageConsumer : RabbitMqBaseConsumer
         //InitializeConsumer();
     }
 
-    protected override void HandleMessage(string message, string routingKey)
+    protected override async Task HandleMessageAsync(string message, string routingKey)
     {
         // deserialize the json string to dotnet object 
         var deserializedMessage = JsonConvert.DeserializeObject<object>(message);
         Console.WriteLine($"--> Deserialized message = {deserializedMessage}");
         
-        _asyncProcessorService.ProcessMessage(message, routingKey);
-        
+        await _asyncProcessorService.ProcessMessage(message, routingKey);
     }
 }

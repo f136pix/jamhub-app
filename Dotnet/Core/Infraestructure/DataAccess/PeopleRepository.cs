@@ -1,6 +1,7 @@
 using DemoLibrary.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using DemoLibrary.Business.Exceptions;
 using DemoLibrary.Infraestructure.DataAccess.Context;
 
 namespace DemoLibrary.Infraestructure.DataAccess;
@@ -34,13 +35,17 @@ public class PeopleRepository : IPeopleRepository
 
     public async Task<PersonModel> GetPersonByIdAsync(int id)
     {
-        return await _context.People.
-            Include(p => p.Bands)
+        return await _context.People.Include(p => p.Bands)
             .FirstOrDefaultAsync(p => p.Id == id);
     }
 
     public async Task<PersonModel> InsertPersonAsync(PersonModel personModel)
     {
+        if (await IsEmailExistsAsync(personModel.Email))
+        {
+            throw new AlreadyExistsException("Email");
+        }
+
         _context.People.Add(personModel);
         return personModel;
     }

@@ -1,7 +1,7 @@
 require 'bunny'
 
 begin
-  $rabbitmq_conn = Bunny.new(hostname: 'localhost', username: 'guest', password: 'guest', port: 5672)
+  $rabbitmq_conn = Bunny.new(hostname: 'localhost', username: 'guest', password: 'guest', port: 5672, automatically_recover: true)
   $rabbitmq_conn.start
 
 rescue Bunny::TCPConnectionFailed => e

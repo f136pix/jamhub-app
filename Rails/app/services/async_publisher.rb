@@ -2,15 +2,21 @@ require 'bunny'
 
 class AsyncPublisher
   class << self
-    def publish(exchange, routing_key, message = {}, queue = 'jamhub')
+    # DIRECT PUBLISH WITH ROUTING KEY
+    def publish(exchange, routing_key, message = {}, queue = 'default')
+
       channel.confirm_select
-      x = channel.direct("#{exchange}")
-      # passive true: doesnt tries to create the queue
-      q = channel.queue(queue, passive: true)
+      exng = channel.direct("#{exchange}")
+      # passive true: doesnt tries to create the queue if exists
+      que = channel.queue(queue, passive: true)
       # binds the exchange to te queue
-      q.bind(x , routing_key: routing_key)
+      que.bind(exng, routing_key: routing_key)
+
+      # fanout
+      # x = channel.fanout("#{exchange}")
       begin
-        x.publish(message.to_json, routing_key: routing_key, mandatory: true)
+        json_msg = message.to_json
+        exng.publish(json_msg, routing_key: routing_key, mandatory: true)
         puts "--> Sent message #{message} to #{exchange} with routing key #{routing_key}"
       rescue Bunny::Exception => e
         puts "--> There was a error publishing the message: #{e.message}"

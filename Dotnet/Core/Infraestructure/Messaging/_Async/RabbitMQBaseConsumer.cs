@@ -76,7 +76,7 @@ public abstract class RabbitMqBaseConsumer : IAsyncMessageConsumer
         {
             var body = ea.Body.ToArray();
             var message = Encoding.UTF8.GetString(body);
-            HandleMessage(message, ea.RoutingKey.ToString());
+            HandleMessageAsync(message, ea.RoutingKey.ToString());
             Logger.LogConsumerRecievedMessage(Queue, ea.RoutingKey.ToString(), message);
         };
 
@@ -85,7 +85,7 @@ public abstract class RabbitMqBaseConsumer : IAsyncMessageConsumer
     }
 
 
-    protected abstract void HandleMessage(string message, string routingKey);
+    protected abstract Task HandleMessageAsync(string message, string routingKey);
 
     public void Dispose()
     {

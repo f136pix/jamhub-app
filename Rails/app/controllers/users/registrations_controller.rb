@@ -19,7 +19,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     }
     # sends user email to dotnet server so it does the job there
     # direct exchange with routing key user.registered
-    AsyncPublisher.publish('ampq.direct', 'user.registered', message)
+    AsyncPublisher.publish('ampq.direct', 'user.registered', message, 'rails.dotnet')
     render json: { message: 'Signed up.' }
   end
 

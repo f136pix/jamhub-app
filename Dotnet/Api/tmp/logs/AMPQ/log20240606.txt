@@ -1,0 +1,3 @@
+2024-06-06 16:24:49.461 -03:00 [INF] --> Consumer Recieved Message: Queue = jamhub, Routing Key = user.registered Message = {"email":"tetrdreedeadtdette@gmail.com","confirmation_token":"YCatsHMkrLzHCRxba3xM"}
+2024-06-06 16:33:02.212 -03:00 [INF] --> Consumer Recieved Message: Queue = jamhub, Routing Key = user.registered Message = {"email":"tetrdreedeacdtdette@gmail.com","confirmation_token":"eLa7Aj4Cj7z45_XQLVJ8"}
+2024-06-06 16:33:25.158 -03:00 [INF] --> Consumer Recieved Message: Queue = jamhub, Routing Key = user.registered Message = {"email":"tetrdreedseacdtdette@gmail.com","confirmation_token":"wxJEy-HYBB_mSgmictpU"}

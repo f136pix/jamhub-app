@@ -1,0 +1,80 @@
+2024-06-13 17:12:32.152 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = user.registered Message = {"email":"curinthatdesteee@gmail.com","confirmation_token":"x56e5kyHjs611eQzyeA-"}
+2024-06-13 17:12:34.082 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: dotnet.rails
+2024-06-13 17:12:34.217 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 17:12:34.239 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "ConfirmEmailCommand { ConfirmationToken = DhQK9K6RkoypvUPSEvKW }"
+2024-06-13 17:12:34.634 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 17:12:34.638 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "ConfirmEmailCommand { ConfirmationToken = DhQK9K6RkoypvUPSEvKW }"
+2024-06-13 18:02:37.246 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 18:02:37.719 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "ConfirmEmailCommand { ConfirmationToken = DhQK9K6RkoypvUPSEvKW }"
+2024-06-13 18:03:47.847 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: dotnet.rails
+2024-06-13 18:03:47.961 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 18:03:48.056 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "ConfirmEmailCommand { ConfirmationToken = DhQK9K6RkoypvUPSEvKW }"
+2024-06-13 18:04:07.901 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 18:04:07.908 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "ConfirmEmailCommand { ConfirmationToken = DhQK9K6RkoypvUPSEvKW }"
+2024-06-13 18:04:38.775 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 18:04:38.778 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "DhQK9K6RkoypvUPSEvKW"
+2024-06-13 18:13:15.731 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 18:13:15.743 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 18:13:42.894 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 18:13:42.899 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 18:13:46.754 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 18:13:46.769 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 18:13:53.514 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 18:13:53.520 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 18:15:20.709 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 18:15:20.713 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 18:17:39.324 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 18:17:39.328 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 18:18:17.298 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 18:18:17.302 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 18:18:35.709 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 18:18:35.847 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 18:18:43.502 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 18:18:43.506 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 21:16:11.408 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: dotnet.rails
+2024-06-13 21:16:11.582 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 21:16:11.598 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 21:21:51.482 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 21:21:51.488 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 21:24:17.312 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 21:24:17.316 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 21:25:02.401 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 21:25:02.405 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 21:39:15.546 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 21:39:15.549 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 21:39:33.562 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 21:39:33.567 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 21:42:07.138 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 21:42:07.143 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 21:42:53.181 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 21:42:53.186 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 21:43:02.535 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 21:43:02.552 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 21:47:11.690 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 21:47:11.693 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 21:47:19.283 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 21:47:19.289 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 21:47:50.558 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 21:47:50.561 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 21:48:19.138 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 21:48:19.144 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 21:48:24.605 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 21:48:24.610 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 21:50:08.944 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 21:50:08.949 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 21:57:24.439 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 21:57:24.467 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 21:57:37.411 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 21:57:37.415 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 21:57:59.724 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 21:57:59.728 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 21:59:38.869 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 21:59:38.874 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 21:59:40.906 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 21:59:40.928 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 21:59:55.355 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 21:59:55.359 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 22:00:13.042 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 22:00:13.047 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"
+2024-06-13 22:00:35.502 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-13 22:00:35.506 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"DhQK9K6RkoypvUPSEvKW\"}"

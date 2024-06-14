@@ -19,7 +19,8 @@ public class PeopleCommandHandler :
     private IAsyncMessagePublisher _asyncMessagePublisher;
     private LoggerBase _logger;
 
-    public PeopleCommandHandler(IPeopleRepository repository, IUnitOfWork uow, RabbitMqMessagePublisher asyncMessagePublisher)
+    public PeopleCommandHandler(IPeopleRepository repository, IUnitOfWork uow,
+        RabbitMqMessagePublisher asyncMessagePublisher)
     {
         _repository = repository;
         _uow = uow;
@@ -31,7 +32,7 @@ public class PeopleCommandHandler :
     {
         // PersonCreateDto dto = request.dto;
         var dto = request.dto;
-        
+
         _logger.WriteLog($"--> Creating person with email: {dto.Email}");
         if (await _repository.IsEmailExistsAsync(dto.Email))
             throw new AlreadyExistsException("Email");
@@ -47,7 +48,7 @@ public class PeopleCommandHandler :
         await _uow.CommitAsync();
         _logger.WriteLog($"--> Person with email {dto.Email} created succefully!");
 
-        await _asyncMessagePublisher.PublishAsync(person, "users.create",RoutingKeys.CreateUser);
+        await _asyncMessagePublisher.PublishAsync(person, "users.create", RoutingKeysConfig.CreateUser);
         return person;
     }
 }

@@ -13,6 +13,8 @@ gem 'pg'
 gem 'dotenv-rails'
 # rabbitmq
 gem 'bunny'
+gem 'amq-protocol'
+gem 'action_subscriber'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets

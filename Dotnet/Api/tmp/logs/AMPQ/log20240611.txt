@@ -1,0 +1,45 @@
+2024-06-11 11:24:47.385 -03:00 [INF] --> Consumer Recieved Message: Queue = jamhub, Routing Key = user.registered Message = {"email":"curinthateste@gmail.com","confirmation_token":"DhQK9K6RkoypvUPSEvKW"}
+2024-06-11 11:25:09.818 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: jamhub
+2024-06-11 11:25:09.882 -03:00 [ERR] --> RabbitMQ Error: Queue = jamhub, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-11 11:25:09.899 -03:00 [INF] --> Published RabbitMQ Message: Queue = jamhub, Exchange = amq.direct, Routing Key = email.confirmation Message = "ConfirmEmailCommand { ConfirmationToken = DhQK9K6RkoypvUPSEvKW }"
+2024-06-11 11:27:12.051 -03:00 [ERR] --> RabbitMQ Error: Queue = jamhub, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-11 11:27:12.054 -03:00 [INF] --> Published RabbitMQ Message: Queue = jamhub, Exchange = amq.direct, Routing Key = email.confirmation Message = "ConfirmEmailCommand { ConfirmationToken = DhQK9K6RkoypvUPSEvKW }"
+2024-06-11 11:28:20.696 -03:00 [ERR] --> RabbitMQ Error: Queue = jamhub, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-11 11:28:20.698 -03:00 [INF] --> Published RabbitMQ Message: Queue = jamhub, Exchange = amq.direct, Routing Key = email.confirmation Message = "ConfirmEmailCommand { ConfirmationToken = DhQK9K6RkoypvUPSEvKW }"
+2024-06-11 11:28:33.808 -03:00 [ERR] --> RabbitMQ Error: Queue = jamhub, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-11 11:28:33.810 -03:00 [INF] --> Published RabbitMQ Message: Queue = jamhub, Exchange = amq.direct, Routing Key = email.confirmation Message = "ConfirmEmailCommand { ConfirmationToken = DhQK9K6RkoypvUPSEvKW }"
+2024-06-11 11:36:25.792 -03:00 [ERR] --> RabbitMQ Error: Queue = jamhub, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-11 11:36:25.794 -03:00 [INF] --> Published RabbitMQ Message: Queue = jamhub, Exchange = amq.direct, Routing Key = email.confirmation Message = "ConfirmEmailCommand { ConfirmationToken = DhQK9K6RkoypvUPSEvKW }"
+2024-06-11 11:36:45.911 -03:00 [ERR] --> RabbitMQ Error: Queue = jamhub, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-11 11:36:45.913 -03:00 [INF] --> Published RabbitMQ Message: Queue = jamhub, Exchange = amq.direct, Routing Key = email.confirmation Message = "ConfirmEmailCommand { ConfirmationToken = DhQK9K6RkoypvUPSEvKW }"
+2024-06-11 11:39:18.361 -03:00 [ERR] --> RabbitMQ Error: Queue = jamhub, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-11 11:39:18.363 -03:00 [INF] --> Published RabbitMQ Message: Queue = jamhub, Exchange = amq.direct, Routing Key = email.confirmation Message = "ConfirmEmailCommand { ConfirmationToken = DhQK9K6RkoypvUPSEvKW }"
+2024-06-11 11:40:11.912 -03:00 [ERR] --> RabbitMQ Error: Queue = jamhub, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-11 11:40:11.916 -03:00 [INF] --> Published RabbitMQ Message: Queue = jamhub, Exchange = amq.direct, Routing Key = email.confirmation Message = "ConfirmEmailCommand { ConfirmationToken = DhQK9K6RkoypvUPSEvKW }"
+2024-06-11 11:52:40.949 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: jamhub
+2024-06-11 11:52:41.886 -03:00 [INF] --> Published RabbitMQ Message: Queue = jamhub, Exchange = users.create, Routing Key = users.create Message = {"Id":1,"FirstName":"string","LastName":"string","Instrument":null,"CellphoneNumber":null,"Email":"string","CityName":null,"Verified":false,"Pictures":null,"Bands":null}
+2024-06-11 11:57:05.518 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: jamhub
+2024-06-11 11:57:11.520 -03:00 [ERR] --> RabbitMQ Error: Queue = jamhub, Error = Didn't created Exchange users.create, one with its name might already exists
+2024-06-11 11:57:11.643 -03:00 [INF] --> Published RabbitMQ Message: Queue = jamhub, Exchange = users.create, Routing Key = users.create Message = {"Id":2,"FirstName":"string","LastName":"string","Instrument":null,"CellphoneNumber":null,"Email":"strindag","CityName":null,"Verified":false,"Pictures":null,"Bands":null}
+2024-06-11 13:53:08.834 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: jamhub
+2024-06-11 13:53:08.949 -03:00 [ERR] --> RabbitMQ Error: Queue = jamhub, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-11 13:53:09.038 -03:00 [INF] --> Published RabbitMQ Message: Queue = jamhub, Exchange = amq.direct, Routing Key = email.confirmation Message = "ConfirmEmailCommand { ConfirmationToken = DhQK9K6RkoypvUPSEvKW }"
+2024-06-11 13:53:52.625 -03:00 [ERR] --> RabbitMQ Error: Queue = jamhub, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-11 13:53:52.631 -03:00 [INF] --> Published RabbitMQ Message: Queue = jamhub, Exchange = amq.direct, Routing Key = email.confirmation Message = "ConfirmEmailCommand { ConfirmationToken = DhQK9K6RkoypvUPSEvKW }"
+2024-06-11 13:54:01.664 -03:00 [ERR] --> RabbitMQ Error: Queue = jamhub, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-11 13:54:01.668 -03:00 [INF] --> Published RabbitMQ Message: Queue = jamhub, Exchange = amq.direct, Routing Key = email.confirmation Message = "ConfirmEmailCommand { ConfirmationToken = DhQK9K6RkoypvUPSEvKW }"
+2024-06-11 13:54:28.051 -03:00 [ERR] --> RabbitMQ Error: Queue = jamhub, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-11 13:54:28.053 -03:00 [INF] --> Published RabbitMQ Message: Queue = jamhub, Exchange = amq.direct, Routing Key = email.confirmation Message = "ConfirmEmailCommand { ConfirmationToken = DhQK9K6RkoypvUPSEvKW }"
+2024-06-11 13:54:35.890 -03:00 [ERR] --> RabbitMQ Error: Queue = jamhub, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-11 13:54:35.892 -03:00 [INF] --> Published RabbitMQ Message: Queue = jamhub, Exchange = amq.direct, Routing Key = email.confirmation Message = "ConfirmEmailCommand { ConfirmationToken = DhQK9K6RkoypvUPSEvKW }"
+2024-06-11 14:16:54.825 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: jamhub
+2024-06-11 14:16:54.938 -03:00 [ERR] --> RabbitMQ Error: Queue = jamhub, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-11 14:16:55.013 -03:00 [INF] --> Published RabbitMQ Message: Queue = jamhub, Exchange = amq.direct, Routing Key = email.confirmation Message = "ConfirmEmailCommand { ConfirmationToken = DhQK9K6RkoypvUPSEvKW }"
+2024-06-11 14:17:14.106 -03:00 [ERR] --> RabbitMQ Error: Queue = jamhub, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-11 14:17:14.110 -03:00 [INF] --> Published RabbitMQ Message: Queue = jamhub, Exchange = amq.direct, Routing Key = email.confirmation Message = "ConfirmEmailCommand { ConfirmationToken = DhQK9K6RkoypvUPSEvKW }"
+2024-06-11 14:20:38.811 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: jamhub
+2024-06-11 14:20:38.918 -03:00 [ERR] --> RabbitMQ Error: Queue = jamhub, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-11 14:20:38.982 -03:00 [INF] --> Published RabbitMQ Message: Queue = jamhub, Exchange = amq.direct, Routing Key = email.confirmation Message = "ConfirmEmailCommand { ConfirmationToken = DhQK9K6RkoypvUPSEvKW }"
+2024-06-11 15:09:19.629 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: jamhub
+2024-06-11 15:09:19.828 -03:00 [ERR] --> RabbitMQ Error: Queue = jamhub, Error = Didn't created Exchange amq.direct, one with its name might already exists
+2024-06-11 15:09:19.900 -03:00 [INF] --> Published RabbitMQ Message: Queue = jamhub, Exchange = amq.direct, Routing Key = email.confirmation Message = "ConfirmEmailCommand { ConfirmationToken = DhQK9K6RkoypvUPSEvKW }"
