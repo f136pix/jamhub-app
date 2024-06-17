@@ -14,6 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def register_success
     message = {
+      id: resource.id,
       email: resource.email,
       confirmation_token: resource.confirmation_token
     }

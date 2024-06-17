@@ -18,31 +18,32 @@ public class PeopleController : WebApiMediatorController
 
     // GET: api/people
     [HttpGet]
-    public Task<ActionResult<List<PersonModel>>> Get()
+    public Task<ActionResult<List<Person>>> Get()
     {
-        return HandleRequest<GetPeopleListQuery, List<PersonModel>>(() => new GetPeopleListQuery());
+        return HandleRequest<GetPeopleListQuery, List<Person>>(() => new GetPeopleListQuery());
     }
 
     // GET: api/people/5
     [HttpGet("{id}")]
-    public Task<ActionResult<PersonModel>> Get(int id)
+    public Task<ActionResult<Person>> Get(int id)
     {
-        return HandleRequest<GetPersonByIdQuery, PersonModel>(() => new GetPersonByIdQuery(id));
+        return HandleRequest<GetPersonByIdQuery, Person>(() => new GetPersonByIdQuery(id));
     }
 
+    // user creations must be made through Rails API
     // POST: api/people
-    [HttpPost]
-    public Task<ActionResult<PersonModel>> Post([FromBody] CreatePersonCommand command)
-    {
-        return HandleRequest<CreatePersonCommand, PersonModel>(() => command);
-    }
+    // [HttpPost]
+    // public Task<ActionResult<PersonModel>> Post([FromBody] CreatePersonCommand command)
+    // {
+    //     return HandleRequest<CreatePersonCommand, PersonModel>(() => command);
+    // }
 
     // PUT: api/people/5
     [HttpPut("{id}")]
-    public Task<ActionResult<PersonModel>> Put(int id, [FromBody] UpdatePersonCommand command)
+    public Task<ActionResult<Person>> Put(int id, [FromBody] UpdatePersonCommand command)
     {
         command.dto.Id = id;
 
-        return HandleRequest<UpdatePersonCommand, PersonModel>(() => command);
+        return HandleRequest<UpdatePersonCommand, Person>(() => command);
     }
 }

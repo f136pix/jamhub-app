@@ -16,19 +16,19 @@ public enum MusicalInstrument
 }
 
 [Index(nameof(Email), IsUnique = true)]
-public class PersonModel
+public class Person
 {
     public int Id { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
+    public string? FirstName { get; set; } 
+    public string? LastName { get; set; }
     public MusicalInstrument? Instrument { get; set; }
     public string? CellphoneNumber { get; set; }
     public string Email { get; set; }
     public string? CityName { get; set; }
     public bool Verified { get; set; } = false;
-    public virtual ICollection<PictureModel>? Pictures { get; set; }
+    public virtual ICollection<Picture>? Pictures { get; set; }
     // people can haveMany bands
-    public virtual ICollection<BandModel>? Bands { get; set; }
+    public virtual ICollection<Band>? Bands { get; set; }
 
 
 }

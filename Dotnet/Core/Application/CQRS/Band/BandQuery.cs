@@ -3,6 +3,6 @@ using MediatR;
 
 namespace DemoLibrary.Application.CQRS.Band;
 
-public record GetBandListQuery() : IRequest<List<BandModel>>;
+public record GetBandListQuery() : IRequest<List<Domain.Models.Band>>;
 
-public record GetBandByIdQuery(int id) : IRequest<BandModel>;
+public record GetBandByIdQuery(int id) : IRequest<Domain.Models.Band>;

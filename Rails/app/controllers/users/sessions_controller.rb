@@ -51,6 +51,16 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def log_out_success
+    auth_header = request.headers['Authorization']
+    token = auth_header.split(' ')[1]
+    decoded_token = JWT.decode(token, Rails.application.secrets.secret_key_base, false, { algorithm: 'HS256' })
+    jti = decoded_token[0]['jti']
+    exp = decoded_token[0]['exp']
+
+
+  message = { jti: jti, exp: exp }
+    # post the revoked jit to the queue so the cloned blacklist table can be updated
+    AsyncPublisher.publish('ampq.direct', 'token.blacklisted', message, 'rails.dotnet')
     render json: { message: 'User logged out.' }, status: :ok
   end
 

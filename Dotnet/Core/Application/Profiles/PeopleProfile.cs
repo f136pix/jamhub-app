@@ -11,9 +11,12 @@ public class PeopleProfile : Profile
         // source  -> target
         // source : entry value 
         // target : mapped/ formated value
-        
+
         // removes null properties from source
-        CreateMap<UpdatePersonDto, PersonModel>()
+        CreateMap<UpdatePersonDto, Person>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+        CreateMap<CreatePersonDto, Person>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
     }
 }

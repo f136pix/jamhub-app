@@ -11,18 +11,21 @@ public class JwtMiddleware
 {
     private readonly RequestDelegate _next;
     private readonly IConfiguration _configuration;
+    private readonly string[] _unprotectedUrls;
 
 
     public JwtMiddleware(RequestDelegate next, IConfiguration configuration)
     {
         _next = next;
         _configuration = configuration;
+        _unprotectedUrls = new[] { "/swagger", "/confirm" };
     }
 
 
     public async Task InvokeAsync(HttpContext context)
     {
-        if (context.Request.Path.StartsWithSegments("/swagger"))
+
+        if (_unprotectedUrls.Any(url => context.Request.Path.StartsWithSegments(url)))
         {
             await _next(context);
             return;

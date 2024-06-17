@@ -9,9 +9,9 @@ namespace DemoLibrary.Infraestructure.DataAccess
     public interface IBandRepository
     {
         Task<bool> isBandExistsAsync(string name);
-        Task<List<BandModel>> GetBandsAsync();
-        Task<BandModel> GetBandByIdAsync(int id);
-        Task<BandModel> InsertBandAsync(BandModel bandModel);
+        Task<List<Band>> GetBandsAsync();
+        Task<Band> GetBandByIdAsync(int id);
+        Task<Band> InsertBandAsync(Band band);
     }
 
     public class BandRepository : IBandRepository
@@ -28,23 +28,23 @@ namespace DemoLibrary.Infraestructure.DataAccess
             return await _context.Band.AnyAsync(b => b.Name == name);
         }
 
-        public async Task<List<BandModel>> GetBandsAsync()
+        public async Task<List<Band>> GetBandsAsync()
         {
             return await _context.Band.ToListAsync();
         }
 
-        public async Task<BandModel> GetBandByIdAsync(int id)
+        public async Task<Band> GetBandByIdAsync(int id)
         {
             return await _context.Band
                 .Include(b => b.Members)
                 .FirstOrDefaultAsync(b => b.Id == id);
         }
 
-        public async Task<BandModel> InsertBandAsync(BandModel bandModel)
+        public async Task<Band> InsertBandAsync(Band band)
         {
-            _context.Band.Add(bandModel);
+            _context.Band.Add(band);
             await _context.SaveChangesAsync();
-            return bandModel;
+            return band;
         }
     }
 }

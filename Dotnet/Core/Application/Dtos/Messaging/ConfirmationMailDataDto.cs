@@ -4,6 +4,9 @@ namespace DemoLibrary.Application.Dtos.Messaging;
 
 public class ConfirmationEmailDataDto
 {
+    [JsonProperty("id")]
+    public int Id { get; set; }
+    
     [JsonProperty("email")]
     public string Email { get; set; }
     

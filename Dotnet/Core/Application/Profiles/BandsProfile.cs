@@ -11,6 +11,6 @@ public class BandsProfile : Profile
             // source  -> target
             // source : entry value 
             // target : mapped/ formated value
-            CreateMap<CreateBandDto, BandModel>();
+            CreateMap<CreateBandDto, Band>();
         } 
 }

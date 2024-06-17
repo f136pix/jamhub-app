@@ -1,3 +1,4 @@
+using DemoLibrary.Domain.Models;
 using DemoLibrary.Infraestructure.DataAccess;
 using DemoLibrary.Infraestructure.DataAccess.Context;
 using DemoLibrary.Infraestructure.DataAccess.UnitOfWork;
@@ -13,6 +14,7 @@ namespace DemoLibrary.CrossCutting
         {
             services.AddScoped<IPeopleRepository, PeopleRepository>();
             services.AddScoped<IBandRepository, BandRepository>();
+            services.AddScoped<IConfirmationTokenRepository, ConfirmationTokenRepository>();
             return services;
         }
 

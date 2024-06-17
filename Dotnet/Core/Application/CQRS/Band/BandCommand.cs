@@ -4,4 +4,4 @@ using MediatR;
 
 namespace DemoLibrary.Application.CQRS.Band;
 
-public record CreateBandCommand(CreateBandDto dto) : IRequest<BandModel>;
+public record CreateBandCommand(CreateBandDto dto) : IRequest<Domain.Models.Band>;

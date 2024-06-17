@@ -13,7 +13,7 @@ using MediatR;
 namespace DemoLibrary.Application.CQRS.Band;
 
 public class BandCommandHandler :
-    IRequestHandler<CreateBandCommand, BandModel>
+    IRequestHandler<CreateBandCommand, Domain.Models.Band>
 {
     private readonly IBandRepository _repository;
     private readonly IPeopleRepository _peopleRepository;
@@ -36,14 +36,14 @@ public class BandCommandHandler :
     }
 
 
-    public async Task<BandModel> Handle(CreateBandCommand request, CancellationToken cancellationToken)
+    public async Task<Domain.Models.Band> Handle(CreateBandCommand request, CancellationToken cancellationToken)
     {
         // PersonCreateDto dto = request.dto;
         var dto = request.dto;
 
         _logger.WriteLog($"--> Creating band with name: {dto.Name}");
 
-        var band = _mapper.Map<BandModel>(dto);
+        var band = _mapper.Map<Domain.Models.Band>(dto);
 
         if (await _repository.isBandExistsAsync(dto.Name))
             throw new AlreadyExistsException("Name");

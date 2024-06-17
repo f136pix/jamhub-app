@@ -7,3 +7,25 @@
 2024-06-17 00:13:56.546 -03:00 [INF] --> Person with id 2 updated succefully!
 2024-06-17 00:15:04.729 -03:00 [INF] --> Updating Person with id: 2
 2024-06-17 00:15:04.807 -03:00 [INF] --> Person with id 2 updated succefully!
+2024-06-17 10:15:23.201 -03:00 [INF] --> Creating person with email: teste@maik.com
+2024-06-17 10:15:25.682 -03:00 [INF] --> Person with email teste@maik.com created succefully!
+2024-06-17 10:44:55.827 -03:00 [INF] --> Creating person with email: curinthatdsddesetesedadeee@gmail.com
+2024-06-17 10:49:43.069 -03:00 [INF] --> Creating person with email: curinthatddssddesetesedadeee@gmail.com
+2024-06-17 10:55:46.399 -03:00 [INF] --> Creating person with email: curinthatddssddeseteseddadeee@gmail.com
+2024-06-17 10:55:48.727 -03:00 [INF] --> Person with email curinthatddssddeseteseddadeee@gmail.com created successfully!
+2024-06-17 10:57:04.945 -03:00 [INF] --> Creating person with email: curinthatddssdfddeseteseddadeee@gmail.com
+2024-06-17 10:57:04.992 -03:00 [INF] --> Person with email curinthatddssdfddeseteseddadeee@gmail.com created successfully!
+2024-06-17 11:06:44.550 -03:00 [INF] --> Creating person with email: curinthatddsdssdfddeseteseddadeee@gmail.com
+2024-06-17 11:06:44.715 -03:00 [INF] --> Person with email curinthatddsdssdfddeseteseddadeee@gmail.com created successfully!
+2024-06-17 11:09:27.544 -03:00 [INF] --> Creating person with email: curinthatdddsdssdfddeseteseddadeee@gmail.com
+2024-06-17 11:09:27.614 -03:00 [INF] --> Person with email curinthatdddsdssdfddeseteseddadeee@gmail.com created successfully!
+2024-06-17 11:33:24.372 -03:00 [INF] --> Creating person with email: curinthatdddsdfsddssdfddeseteseddadeee@gmail.com
+2024-06-17 11:33:26.472 -03:00 [ERR] Could not create user with email curinthatdddsdfsddssdfddeseteseddadeee@gmail.com, Error: 42P01: relation "BandPerson" does not exist
+
+POSITION: 531
+2024-06-17 11:35:14.144 -03:00 [INF] --> Creating person with email: curidanthatdddsdfsddssdfddeseteseddadeee@gmail.com
+2024-06-17 11:35:16.447 -03:00 [INF] --> Person with email curidanthatdddsdfsddssdfddeseteseddadeee@gmail.com created successfully!
+2024-06-17 12:54:59.384 -03:00 [INF] --> Creating person with email: curidanthatdddsdfsddfasssdfddeseteseddadeee@gmail.com
+2024-06-17 12:55:01.673 -03:00 [ERR] Could not create user with email curidanthatdddsdfsddfasssdfddeseteseddadeee@gmail.com, Error: Unable to track an instance of type 'ConfirmationToken' because it does not have a primary key. Only entity types with a primary key may be tracked.
+2024-06-17 12:58:36.667 -03:00 [INF] --> Creating person with email: curidanthatdddsddfsddfasssdfddeseteseddadeee@gmail.com
+2024-06-17 15:34:36.271 -03:00 [INF] --> Creating person with email: testeconfirmaemail@gmail.com

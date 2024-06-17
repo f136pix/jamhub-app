@@ -3,9 +3,11 @@ using AutoMapper;
 using DemoLibrary.Application.CQRS.People;
 using DemoLibrary.Application.Dtos.People;
 using DemoLibrary.Application.Services.Messaging;
+using DemoLibrary.Application.Services.People;
 using DemoLibrary.Business.Exceptions;
 using DemoLibrary.CrossCutting.Logger;
 using DemoLibrary.Domain.Exceptions;
+using DemoLibrary.Domain.Models;
 using DemoLibrary.Infraestructure.DataAccess;
 using DemoLibrary.Infraestructure.DataAccess.UnitOfWork;
 using DemoLibrary.Infraestructure.Messaging.Async;
@@ -15,9 +17,11 @@ using MediatR;
 namespace DemoLibrary.Business.CQRS.People;
 
 public class PeopleCommandHandler :
-    IRequestHandler<CreatePersonCommand, PersonModel>,
-    IRequestHandler<UpdatePersonCommand, PersonModel>
+    IRequestHandler<CreatePersonCommand, Person>,
+    IRequestHandler<UpdatePersonCommand, Person>
 {
+    private readonly IPeopleService _peopleService;
+    private readonly IConfirmationTokenRepository _confirmationTokenRepository;
     private readonly IBandRepository _bandRepository;
     private readonly IPeopleRepository _repository;
     private readonly IUnitOfWork _uow;
@@ -26,6 +30,8 @@ public class PeopleCommandHandler :
     private LoggerBase _logger;
 
     public PeopleCommandHandler(
+        IPeopleService peopleService,
+        IConfirmationTokenRepository confirmationTokenRepository,
         IBandRepository bandRepository,
         IPeopleRepository repository,
         IUnitOfWork uow,
@@ -33,6 +39,8 @@ public class PeopleCommandHandler :
         RabbitMqMessagePublisher asyncMessagePublisher
     )
     {
+        _peopleService = peopleService;
+        _confirmationTokenRepository = confirmationTokenRepository;
         _bandRepository = bandRepository;
         _repository = repository;
         _uow = uow;
@@ -41,36 +49,38 @@ public class PeopleCommandHandler :
         _logger = new LoggerBase("PeopleCommandHandler");
     }
 
-    public async Task<PersonModel> Handle(CreatePersonCommand request, CancellationToken cancellationToken)
+    public async Task<Person> Handle(CreatePersonCommand request, CancellationToken cancellationToken)
     {
-        // PersonCreateDto dto = request.dto;
-        var dto = request.dto;
-
-        _logger.WriteLog($"--> Creating person with email: {dto.Email}");
-        if (await _repository.IsEmailExistsAsync(dto.Email))
-            throw new AlreadyExistsException("Email");
-
-        var person = new PersonModel
+        try
         {
-            FirstName = dto.FirstName,
-            LastName = dto.LastName,
-            Email = dto.Email
-        };
-        await _repository.InsertPersonAsync(person);
+            // PersonCreateDto dto = request.dto;
+            var dto = request.dto;
 
-        await _uow.CommitAsync();
-        _logger.WriteLog($"--> Person with email {dto.Email} created succefully!");
+            _logger.WriteLog($"--> Creating person with email: {dto.Email}");
+            if (await _repository.IsEmailExistsAsync(dto.Email))
+                throw new AlreadyExistsException("Email");
 
-        await _asyncMessagePublisher.PublishAsync(person, "users.create", RoutingKeysConfig.CreateUser);
-        return person;
+            if (dto.Id.HasValue)
+            {
+                if (await _repository.GetPersonByIdAsync(dto.Id.Value) != null)
+                {
+                    throw new AlreadyExistsException("Id");
+                }
+            }
+
+            return await _peopleService.RegisterUserAsync(dto);
+        }
+        catch (Exception ex)
+        {
+            _logger.WriteException($"Could not create user with email {request.dto.Email}, Error: {ex.Message}");
+            throw;
+        }
     }
 
-    public async Task<PersonModel> Handle(UpdatePersonCommand request, CancellationToken cancellationToken)
+    public async Task<Person> Handle(UpdatePersonCommand request, CancellationToken cancellationToken)
     {
         // PersonUpdateDto dto = request.dto;
         var dto = request.dto;
-
-        _logger.WriteLog($"--> Updating Person with id: {dto.Id}");
 
         var person = await _repository.GetPersonByIdAsync(dto.Id);
 
@@ -99,7 +109,6 @@ public class PeopleCommandHandler :
                     {
                         _logger.WriteLog($"--> Band with id {bandId} not found!");
                         throw new BandNotFoundException(bandId);
-                        return;
                     }
 
                     person.Bands.Add(band);
@@ -111,7 +120,6 @@ public class PeopleCommandHandler :
         }
 
         await _uow.CommitAsync();
-        _logger.WriteLog($"--> Person with id {dto.Id} updated succefully!");
 
         return person;
     }

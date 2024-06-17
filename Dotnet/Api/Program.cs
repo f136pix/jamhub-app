@@ -3,6 +3,7 @@ using System.Net.Mime;
 using System.Reflection;
 using DemoLibrary;
 using DemoLibrary.Application.Services.Messaging;
+using DemoLibrary.Application.Services.People;
 using DemoLibrary.CrossCutting;
 using DemoLibrary.CrossCutting.Queues;
 using DemoLibrary.CrossCutting.Queues.Configuration;
@@ -10,6 +11,7 @@ using DemoLibrary.Infraestructure.DataAccess;
 using DemoLibrary.Infraestructure.DataAccess.Context;
 using DemoLibrary.Infraestructure.Messaging._Mail;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Options;
 using Serilog;
 
@@ -102,6 +104,7 @@ builder.Services.AddAutoMapper(typeof(DemoLibraryMediatREntrypoint).Assembly);
 // services
 // builder.Services.AddScoped<IAsyncProcessorService, AsyncProcessorService>();
 builder.Services.AddSingleton<IAsyncProcessorService, AsyncProcessorService>();
+builder.Services.AddScoped<IPeopleService, PeopleService>();
 
 // mailer sender
 
@@ -175,8 +178,3 @@ if (app.Environment.IsProduction())
 app.UseHttpsRedirection();
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

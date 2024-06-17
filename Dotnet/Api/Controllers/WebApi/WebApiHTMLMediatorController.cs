@@ -1,3 +1,4 @@
+using DemoLibrary.Domain.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Protocol;
@@ -6,10 +7,10 @@ namespace Api.Controllers.WebApi;
 
 public partial class WebApiMediatorController : BaseApiMediator
 {
-    protected readonly string _okMsg;
-    protected readonly string _errMsg;
-    protected readonly string _notFoundMsg;
-    protected readonly string _unprocessableEntityMsg;
+    protected string _okMsg;
+    protected string _errMsg;
+    protected string _notFoundMsg;
+    protected string _unprocessableEntityMsg;
 
     public WebApiMediatorController(IMediator mediator, string okMsg, string errMsg,
         string notFoundMsg, string unprocessableEntityMsg) : base(mediator)
@@ -80,6 +81,25 @@ public partial class WebApiMediatorController : BaseApiMediator
                 ContentType = "text/html",
                 StatusCode = 200,
                 Content = _okMsg
+            };
+        }
+        catch (CouldNotValidateUser ex)
+        {
+            _errMsg = @"
+                    <html>
+                        <head>
+                            <title>Could not confirm email</title>
+                        </head>
+                    <body>
+                        <h1>Your user might already be validated</h1>
+                            <p>Try accessing it again, try again later or contact-us.</p>
+                    </body>
+                    </html>";
+            return new ContentResult()
+            {
+                ContentType = "text/html",
+                StatusCode = 400,
+                Content = _errMsg
             };
         }
         catch (Exception ex)

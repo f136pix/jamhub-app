@@ -1,2 +1,37 @@
 2024-06-17 00:10:50.229 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: dotnet.rails
 2024-06-17 00:13:53.865 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: dotnet.rails
+2024-06-17 10:15:23.143 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: dotnet.rails
+2024-06-17 10:15:25.887 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = users.create, Routing Key = users.create Message = {"Id":3,"FirstName":"string","LastName":"string","Instrument":null,"CellphoneNumber":"string","Email":"teste@maik.com","CityName":"string","Verified":false,"Pictures":null,"Bands":null}
+2024-06-17 10:26:08.747 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = user.registered Message = {"id":40,"email":"curinthatdeseteseeee@gmail.com","confirmation_token":"zfAMEC89_YQncqU4V5hg"}
+2024-06-17 10:27:44.893 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = user.registered Message = {"id":42,"email":"curinthatdesetesedaeee@gmail.com","confirmation_token":"Bsex-a2JU3bbN2qNq_N1"}
+2024-06-17 10:32:51.444 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = user.registered Message = {"id":44,"email":"curinthatdsdesetesedaeee@gmail.com","confirmation_token":"gq82YqrZBy2ry6cn8Vwi"}
+2024-06-17 10:36:43.187 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = user.registered Message = {"id":45,"email":"curinthatdsdesetesedadeee@gmail.com","confirmation_token":"1X6iMgKDGm-2K1eA7gQT"}
+2024-06-17 10:44:55.780 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: dotnet.rails
+2024-06-17 10:44:57.292 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = user.registered Message = {"id":46,"email":"curinthatdsddesetesedadeee@gmail.com","confirmation_token":"1WGzSg_GZN6yLkiPrVCP"}
+2024-06-17 10:49:43.032 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: dotnet.rails
+2024-06-17 10:49:44.498 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = user.registered Message = {"id":47,"email":"curinthatddssddesetesedadeee@gmail.com","confirmation_token":"25WugBLLSxypz2hHj5X3"}
+2024-06-17 10:55:46.364 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: dotnet.rails
+2024-06-17 10:55:47.863 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = user.registered Message = {"id":48,"email":"curinthatddssddeseteseddadeee@gmail.com","confirmation_token":"TyBS7LMstrNrye5cPNQL"}
+2024-06-17 10:57:04.978 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = user.registered Message = {"id":49,"email":"curinthatddssdfddeseteseddadeee@gmail.com","confirmation_token":"SVZTsgGsdnzm_Z9T5Dfs"}
+2024-06-17 11:06:44.651 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = 2024-06-17 11:06:44.716 -03:00 [INF] Executed successfully the handler for routing key: user.registered
+2024-06-17 11:09:27.614 -03:00 [INF] Executed successfully the handler for routing key: user.registered
+= rails.dotnet, Routing Key = user.registered Message = {"id":52,"email":"curinthatdddsdssdfddeseteseddadeee@gmail.com","confirmation_token":"NwxbS2ao1xQzWZt8NAej"}
+2024-06-17 11:33:24.336 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: dotnet.rails
+2024-06-17 11:33:25.824 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = user.registered Message = {"id":53,"email":"curinthatdddsdfsddssdfddeseteseddadeee@gmail.com","confirmation_token":"wPtxkqJVxMMyzePA6oG1"}
+2024-06-17 11:35:14.110 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: dotnet.rails
+2024-06-17 11:35:15.596 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = user.registered Message = {"id":55,"email":"curidanthatdddsdfsddssdfddeseteseddadeee@gmail.com","confirmation_token":"u4sE2RhNY6M8z_tcAygx"}
+2024-06-17 11:35:16.454 -03:00 [INF] --> Executed successfully the handler for routing key: user.registered
+2024-06-17 12:54:59.349 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: dotnet.rails
+2024-06-17 12:55:00.827 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = user.registered Message = {"id":56,"email":"curidanthatdddsdfsddfasssdfddeseteseddadeee@gmail.com","confirmation_token":"JzDquQkDyG1xoWdXeyyW"}
+2024-06-17 12:58:36.613 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: dotnet.rails
+2024-06-17 12:58:37.651 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = user.registered Message = {"id":57,"email":"curidanthatdddsddfsddfasssdfddeseteseddadeee@gmail.com","confirmation_token":"r7p3z3ekk3as1vepq31g"}
+2024-06-17 12:58:38.632 -03:00 [INF] --> Executed successfully the handler for routing key: user.registered
+2024-06-17 15:34:36.235 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: dotnet.rails
+2024-06-17 15:34:37.744 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = user.registered Message = {"id":58,"email":"testeconfirmaemail@gmail.com","confirmation_token":"5rznRQJYu65L7obJ_xu8"}
+2024-06-17 15:39:22.533 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: dotnet.rails
+2024-06-17 15:39:25.654 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"5rznRQJYu65L7obJ_xu8\"}"
+2024-06-17 15:39:46.193 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"5rznRQJYu65L7obJ_xu8\"}"
+2024-06-17 15:39:55.614 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"5rznRQJYu65L7obJ_xu8\"}"
+2024-06-17 15:44:32.969 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: dotnet.rails
+2024-06-17 16:53:17.000 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = token.blacklisted Message = {"token":"Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImN1cmludGhhdGRlc2V0ZWVlZWVAZ21haWwuY29tIiwic3ViIjoiMzgiLCJzY3AiOiJ1c2VyIiwiYXVkIjpudWxsLCJpYXQiOjE3MTg2NTA4NDcsImV4cCI6MTcxODczNzI0NywianRpIjoiOGFjMmEwNTctOWVjNC00OTE3LThlNDQtZGUxMmM0ZmYyYjVmIn0.1dBkKNlRJDE3eXjQUcbYicAlbMQmqKP3l1z2NS3aE4k"}
+2024-06-17 17:47:27.822 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = token.blacklisted Message = {"token":"Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImN1cmludGhhdGRlc2V0ZWVlZWVAZ21haWwuY29tIiwic3ViIjoiMzgiLCJzY3AiOiJ1c2VyIiwiYXVkIjpudWxsLCJpYXQiOjE3MTg2NTUxODcsImV4cCI6MTcxODc0MTU4NywianRpIjoiYTc5ZmFiMGItNjZlMC00ZDQ4LTgzYzQtOWQ2NzMyNGQxZjRmIn0.8C3AXSeMVJOQaoVbyy4At0uygz2SBUfOHr6u6iI4mSI"}

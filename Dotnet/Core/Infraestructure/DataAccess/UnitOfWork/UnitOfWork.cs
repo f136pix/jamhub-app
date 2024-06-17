@@ -22,6 +22,7 @@ public class UnitOfWork : IUnitOfWork
         try
         {
             await _context.SaveChangesAsync();
+            Console.WriteLine("--> Unit of work committed successfully");
             return true;
         }
         catch

@@ -7,8 +7,8 @@ using MediatR;
 namespace DemoLibrary.Business.CQRS.People;
 
 public class PeopleQueryHandler :
-    IRequestHandler<GetPeopleListQuery, List<PersonModel>>,
-    IRequestHandler<GetPersonByIdQuery, PersonModel>
+    IRequestHandler<GetPeopleListQuery, List<Person>>,
+    IRequestHandler<GetPersonByIdQuery, Person>
 {
     // private readonly IDataAccess _data;
     //
@@ -24,13 +24,13 @@ public class PeopleQueryHandler :
         _repository = repository;
     }
 
-    public async Task<List<PersonModel>> Handle(GetPeopleListQuery request, CancellationToken cancellationToken)
+    public async Task<List<Person>> Handle(GetPeopleListQuery request, CancellationToken cancellationToken)
     {
         var people = await _repository.GetPeopleAsync();
         return people;
     }
 
-public async Task<PersonModel> Handle(GetPersonByIdQuery request, CancellationToken cancellationToken)
+public async Task<Person> Handle(GetPersonByIdQuery request, CancellationToken cancellationToken)
     {
         var user =  await _repository.GetPersonByIdAsync(request.id);
         // Console.WriteLine("--> ",user.Bands.Count);
