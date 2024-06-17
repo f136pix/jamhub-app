@@ -126,8 +126,13 @@ builder.Services.AddEmailService();
 
 
 var app = builder.Build();
+
+// configure jwt authentication middleware
+app.AddJwtMiddleware();
+
 var serviceScopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
 
+// orquestrates the consumer
 app.RunRabbitMqMessageConsumer();
 
 // run pending migrations

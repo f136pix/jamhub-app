@@ -1,0 +1,9 @@
+2024-06-17 00:10:50.309 -03:00 [INF] --> Updating Person with id: 2
+2024-06-17 00:10:52.951 -03:00 [INF] --> Person with id 2 updated succefully!
+2024-06-17 00:13:07.728 -03:00 [INF] --> Creating band with name: string
+2024-06-17 00:13:12.680 -03:00 [INF] --> Creating band with name: string
+2024-06-17 00:13:12.980 -03:00 [INF] --> Band with name string created succefully!
+2024-06-17 00:13:53.914 -03:00 [INF] --> Updating Person with id: 2
+2024-06-17 00:13:56.546 -03:00 [INF] --> Person with id 2 updated succefully!
+2024-06-17 00:15:04.729 -03:00 [INF] --> Updating Person with id: 2
+2024-06-17 00:15:04.807 -03:00 [INF] --> Person with id 2 updated succefully!

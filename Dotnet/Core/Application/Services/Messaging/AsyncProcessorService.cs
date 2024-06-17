@@ -84,6 +84,7 @@ public class AsyncProcessorService : IAsyncProcessorService
             </html>";
 
 
+        // var sendEmailCommand = new SendEmailCommand(messageData.Email, subject, text);
         var sendEmailCommand = new SendEmailCommand("Filipecocinel@gmail.com", subject, text);
         await _mediator.Send(sendEmailCommand);
     }

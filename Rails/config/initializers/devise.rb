@@ -11,6 +11,8 @@
 
 
 Devise.setup do |config|
+  
+  
 
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
@@ -93,7 +95,7 @@ Devise.setup do |config|
   # It will change confirmation, password recovery and other workflows
   # to behave the same regardless if the e-mail provided was right or wrong.
   # Does not affect registerable.
-  # config.paranoid = true
+  # config.paranoid = true 
 
   # By default Devise will store the user in session. You can skip storage for
   # particular strategies by setting this option.
@@ -272,15 +274,21 @@ Devise.setup do |config|
   config.jwt do |jwt|
     # jwt.secret = ENV['DEVISE_JWT_SECRET_KEY']
     jwt.secret = "21e61274038da611eeb0ffa54b96662bb181f8e0cdd00154f4d5b3b445df33774c871b4db7d44a5b61ce9574220a6c49b769a9eda4d24cf85b7dbd41171caacc"
-    # post to /sign_in dispatches a jwt to client
+
+    # default algo is HS256
+    # jwt.algorithm = Rails.application.credentials.devise_jwt_algorithm!
+    
+    # post to /login dispatches a jwt to client
     jwt.dispatch_requests = [
       ['POST', %r{^/auth/login$}]
     ]
-    # delete to /sign_out revokes jwt
+    # delete to /logout revokes jwt
     jwt.revocation_requests = [
       ['DELETE', %r{^/auth/logout$}]
     ]
     jwt.expiration_time = 1.day.to_i
+    
+    
   end
   
   # The default HTTP method used to sign out a resource. Default is :delete.

@@ -29,11 +29,20 @@ public class PeopleController : WebApiMediatorController
     {
         return HandleRequest<GetPersonByIdQuery, PersonModel>(() => new GetPersonByIdQuery(id));
     }
-    
+
     // POST: api/people
     [HttpPost]
     public Task<ActionResult<PersonModel>> Post([FromBody] CreatePersonCommand command)
     {
         return HandleRequest<CreatePersonCommand, PersonModel>(() => command);
+    }
+
+    // PUT: api/people/5
+    [HttpPut("{id}")]
+    public Task<ActionResult<PersonModel>> Put(int id, [FromBody] UpdatePersonCommand command)
+    {
+        command.dto.Id = id;
+
+        return HandleRequest<UpdatePersonCommand, PersonModel>(() => command);
     }
 }

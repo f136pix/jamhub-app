@@ -4,3 +4,6 @@
 2024-06-14 14:57:12.184 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"fsafasd\"}"
 2024-06-14 15:01:32.935 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"fsafasd\"}"
 2024-06-14 15:02:17.008 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"fsafasd\"}"
+2024-06-14 16:11:19.016 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: dotnet.rails
+2024-06-14 16:11:19.220 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"x56e5kyHjs611eQzyeA-\"}"
+2024-06-14 16:11:26.126 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "{\"ConfirmationToken\":\"x56e5kyHjs611eQzyeA-\"}"
