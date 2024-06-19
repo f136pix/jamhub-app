@@ -1,0 +1,5 @@
+2024-06-19 18:09:54.680 -03:00 [INF] 
+**************************************************
+id:ServerRequest
+proccess_id: ServerRequest
+Initializing RabbitMQ, exchange bound to queue: dotnet.rails

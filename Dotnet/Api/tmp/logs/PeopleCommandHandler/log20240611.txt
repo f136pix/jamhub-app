@@ -1,5 +1,0 @@
-2024-06-11 11:52:41.007 -03:00 [INF] --> Creating person with email: string
-2024-06-11 11:52:41.700 -03:00 [INF] --> Person with email string created succefully!
-2024-06-11 11:57:05.580 -03:00 [INF] --> Creating person with email: string
-2024-06-11 11:57:11.013 -03:00 [INF] --> Creating person with email: strindag
-2024-06-11 11:57:11.472 -03:00 [INF] --> Person with email strindag created succefully!

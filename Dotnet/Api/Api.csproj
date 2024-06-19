@@ -32,4 +32,10 @@
         </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="tmp\logs\AMPQ-Publisher\" />
+      <Folder Include="tmp\logs\AMPQ\" />
+      <Folder Include="tmp\logs\Create-Band\" />
+    </ItemGroup>
+
 </Project>

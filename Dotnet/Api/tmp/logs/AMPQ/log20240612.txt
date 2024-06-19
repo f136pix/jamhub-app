@@ -1,7 +1,0 @@
-2024-06-12 17:27:53.291 -03:00 [INF] --> Consumer Recieved Message: Queue = dotnetConsumes, Routing Key = user.registered Message = {"email":"curinthatesteee@gmail.com","confirmation_token":"phJ2CgfZaXsT-sZ3VWbA"}
-2024-06-12 17:28:08.914 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: railsComsumes
-2024-06-12 17:28:08.997 -03:00 [ERR] --> RabbitMQ Error: Queue = railsComsumes, Error = Didn't created Exchange amq.direct, one with its name might already exists
-2024-06-12 17:28:09.040 -03:00 [INF] --> Published RabbitMQ Message: Queue = railsComsumes, Exchange = amq.direct, Routing Key = email.confirmation Message = "ConfirmEmailCommand { ConfirmationToken = DhQK9K6RkoypvUPSEvKW }"
-2024-06-12 22:39:41.542 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: dotnet.rails
-2024-06-12 22:39:41.636 -03:00 [ERR] --> RabbitMQ Error: Queue = dotnet.rails, Error = Didn't created Exchange amq.direct, one with its name might already exists
-2024-06-12 22:39:41.719 -03:00 [INF] --> Published RabbitMQ Message: Queue = dotnet.rails, Exchange = amq.direct, Routing Key = email.confirmation Message = "ConfirmEmailCommand { ConfirmationToken = DhQK9K6RkoypvUPSEvKW }"

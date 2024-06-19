@@ -1,1 +1,0 @@
-2024-05-31 15:44:38.224 -03:00 [INF] --> Consumer Recieved Message: Queue = jamhub, Routing Key = user.registered Message = {"email":"tetrreeetdete@gmail.com","confirmation_token":"ZQDn_nCcQ6rJLkr8fGHT"}

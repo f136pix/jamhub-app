@@ -1,9 +1,0 @@
-2024-05-17 15:12:34.084 -03:00 [INF] --> Creating band with name: string
-2024-05-17 16:51:22.525 -03:00 [INF] --> Creating band with name: string
-2024-05-17 16:51:27.187 -03:00 [INF] --> Creating band with name: string
-2024-05-17 16:51:48.363 -03:00 [INF] --> Creating band with name: stringafgg
-2024-05-17 16:51:55.496 -03:00 [INF] --> Creating band with name: stringafgg
-2024-05-17 16:54:51.272 -03:00 [INF] --> Creating band with name: strireng
-2024-05-17 16:55:38.814 -03:00 [INF] --> Creating band with name: string
-2024-05-17 16:56:46.199 -03:00 [INF] --> Creating band with name: stridang
-2024-05-17 16:57:27.957 -03:00 [INF] --> Creating band with name: strireang

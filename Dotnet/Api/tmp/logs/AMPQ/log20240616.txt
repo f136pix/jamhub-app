@@ -1,4 +1,0 @@
-2024-06-16 21:54:50.421 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = user.registered Message = {"email":"curinthatdeseteeee@gmail.com","confirmation_token":"Vzwtyyk3uXLhQUUPHo_k"}
-2024-06-16 21:55:13.534 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = user.registered Message = {"email":"curinthatdeseteeeee@gmail.com","confirmation_token":"uxnk7hdCzPPCv9hZDrbd"}
-2024-06-16 23:50:37.140 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: dotnet.rails
-2024-06-16 23:53:11.374 -03:00 [INF] Initializing RabbitMQ, exchange bound to queue: dotnet.rails

@@ -1,2 +1,0 @@
-2024-05-23 10:37:12.933 -03:00 [INF] Initializing RabbitMQ, queue: jamhub
-2024-05-23 10:37:13.568 -03:00 [INF] --> Published RabbitMQ Message: Queue = jamhub, Exchange = users.create, Routing Key = CreateUser Message = {"Id":1,"FirstName":"string","LastName":"string","Instrument":null,"CellphoneNumber":null,"Email":"string","CityName":null,"Verified":false,"Pictures":null,"Bands":null}

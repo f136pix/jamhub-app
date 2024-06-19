@@ -31,6 +31,9 @@ builder.Services.AddControllers()
         opt.JsonSerializerOptions.MaxDepth = 32;
     });
 
+builder.Services.AddHttpContextAccessor();
+
+
 var isDevelopment = builder.Environment.IsDevelopment();
 var isProduction = builder.Environment.IsProduction();
 
@@ -124,6 +127,9 @@ builder.Services.AddRabbitMqMessageConsumer();
 // email service
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 builder.Services.AddEmailService();
+
+// logger factory
+builder.Services.AddLoggerFactory();
 
 
 var app = builder.Build();
