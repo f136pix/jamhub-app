@@ -9,7 +9,8 @@ public interface IConfirmationTokenRepository
 {
     Task<ConfirmationToken> InsertConfirmationTokenAsync(ConfirmationToken confirmationToken);
     Task<ConfirmationToken> GetConfirmationTokenByToken(string token);
-    Task<bool> ConfirmUserByTokenAsync(string token);
+    
+    // Task<bool> ConfirmUserByTokenAsync(string token);
 }
 
 public class ConfirmationTokenRepository : IConfirmationTokenRepository
@@ -34,22 +35,23 @@ public class ConfirmationTokenRepository : IConfirmationTokenRepository
             .FirstOrDefaultAsync(c => c.Token == token);
     }
 
-    public async Task<bool> ConfirmUserByTokenAsync(string token)
-    {
-        var confirmationToken = await _context.ConfirmationToken
-            .Include(c => c.User)
-            .FirstOrDefaultAsync(c => c.Token == token);
-
-        if (confirmationToken == null)
-            throw new CouldNotValidateUser("Invalid token");
-
-        // if user is already validated
-        if (confirmationToken.User.Verified == true)
-        {
-            throw new CouldNotValidateUser("User already verified");
-        }
-
-        confirmationToken.User.Verified = true;
-        return true;
-    }
+    // method has too much business logic and should be in a service
+    // public async Task<bool> ConfirmUserByTokenAsync(string token)
+    // {
+    //     var confirmationToken = await _context.ConfirmationToken
+    //         .Include(c => c.User)
+    //         .FirstOrDefaultAsync(c => c.Token == token);
+    //
+    //     if (confirmationToken == null)
+    //         throw new CouldNotValidateUser("Invalid token");
+    //
+    //     // if user is already validated
+    //     if (confirmationToken.User.Verified == true)
+    //     {
+    //         throw new CouldNotValidateUser("User already verified");
+    //     }
+    //
+    //     confirmationToken.User.Verified = true;
+    //     return true;
+    // }
 }

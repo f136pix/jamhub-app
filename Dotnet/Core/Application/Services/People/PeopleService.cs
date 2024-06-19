@@ -1,6 +1,7 @@
 using AutoMapper;
 using DemoLibrary.Application.CQRS.Messaging;
 using DemoLibrary.Application.Dtos.People;
+using DemoLibrary.Business.Exceptions;
 using DemoLibrary.Domain.Exceptions;
 using DemoLibrary.Domain.Models;
 using DemoLibrary.Infraestructure.DataAccess;
@@ -38,19 +39,29 @@ public class PeopleService : IPeopleService
     // adds user and confirmation token transactionally
     public async Task<Person> RegisterUserAsync(CreatePersonDto dto)
     {
+        if (await _peopleRepository.IsEmailExistsAsync(dto.Email))
+            throw new AlreadyExistsException("Email");
+
+        if (dto.Id.HasValue && await _peopleRepository.GetPersonByIdAsync(dto.Id.Value) != null)
+        {
+            throw new AlreadyExistsException("Id");
+        }
+
         var person = _mapper.Map<Person>(dto);
         await _peopleRepository.InsertPersonAsync(person);
 
-        if (dto.ConfirmationToken != null)
+        if (dto.ConfirmationToken == null)
         {
-            var confirmationToken = new ConfirmationToken
-            {
-                Token = dto.ConfirmationToken,
-                UserId = person.Id
-            };
-
-            await _confirmationTokenRepository.InsertConfirmationTokenAsync(confirmationToken);
+            throw new Exception("Cant create user, no confirmation token provided");
         }
+
+        var confirmationToken = new ConfirmationToken
+        {
+            Token = dto.ConfirmationToken,
+            UserId = person.Id
+        };
+
+        await _confirmationTokenRepository.InsertConfirmationTokenAsync(confirmationToken);
 
         await _uow.CommitAsync();
 
@@ -59,16 +70,31 @@ public class PeopleService : IPeopleService
 
     public async Task<bool> ConfirmUserAsync(ConfirmEmailCommand dto)
     {
-        var wasValidated = await _confirmationTokenRepository.ConfirmUserByTokenAsync(dto.ConfirmationToken);
+        //  too much business logic delegated to repository
+        //     var wasValidated = await _confirmationTokenRepository.ConfirmUserByTokenAsync(dto.ConfirmationToken);
+        //
+        //     await _uow.CommitAsync();
+        //
+        //     return true;
 
-        try
+
+        // businsess login mostly in service
+        var user = await _confirmationTokenRepository.GetConfirmationTokenByToken(dto.ConfirmationToken)
+            .ContinueWith(token => token.Result.User);
+
+        if (user == null)
         {
-            await _uow.CommitAsync();
+            throw new CouldNotValidateUser("Invalid token");
         }
-        catch (Exception ex)
+
+        if (user.Verified)
         {
-            throw new CouldNotValidateUser("Could not validate user");
+            throw new CouldNotValidateUser("User already verified");
         }
+
+        user.Verified = true;
+
+        await _uow.CommitAsync();
 
         return true;
     }

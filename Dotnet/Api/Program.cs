@@ -25,7 +25,7 @@ builder.Services.AddControllers()
     .AddJsonOptions(opt =>
     {
         // opt.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
-        
+
         opt.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
 
         opt.JsonSerializerOptions.MaxDepth = 32;
@@ -103,9 +103,7 @@ builder.Services.AddAutoMapper(typeof(DemoLibraryMediatREntrypoint).Assembly);
 
 // services
 // builder.Services.AddScoped<IAsyncProcessorService, AsyncProcessorService>();
-builder.Services.AddSingleton<IAsyncProcessorService, AsyncProcessorService>();
-builder.Services.AddScoped<IPeopleService, PeopleService>();
-
+builder.Services.AddServices();
 // mailer sender
 
 // rabbimq connection
@@ -131,9 +129,11 @@ builder.Services.AddEmailService();
 var app = builder.Build();
 
 // configure jwt authentication middleware
-app.AddJwtMiddleware();
 
 var serviceScopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
+
+// jwt middleware
+app.ApplyMiddleware();
 
 // orquestrates the consumer
 app.RunRabbitMqMessageConsumer();

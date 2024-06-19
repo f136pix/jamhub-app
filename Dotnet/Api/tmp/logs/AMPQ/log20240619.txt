@@ -1,0 +1,5 @@
+2024-06-19 00:05:49.801 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = token.blacklisted Message = {"jti":"cde6d5e4-aa7b-47c3-a82e-f990f9c34b6b","exp":1718849852}
+2024-06-19 00:06:16.671 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = token.blacklisted Message = {"jti":"e1e3c7b4-dd7d-40de-9133-195dea72861a","exp":1718852761}
+2024-06-19 00:10:34.100 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = token.blacklisted Message = {"jti":"e1e3c7b4-dd7d-40de-9133-195dea72861a","exp":1718852761}
+2024-06-19 00:14:25.374 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = token.blacklisted Message = {"jti":"e1e3c7b4-dd7d-40de-9133-195dea72861a","exp":1718852761}
+2024-06-19 00:15:11.424 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = token.blacklisted Message = {"jti":"66756327-ef80-49a0-a18c-d2367cb25c55","exp":1718853272}

@@ -1,3 +1,4 @@
+using System.Data.SqlTypes;
 using DemoLibrary.Business.Exceptions;
 using DemoLibrary.Infraestructure.DataAccess.Context;
 
@@ -25,7 +26,9 @@ public class UnitOfWork : IUnitOfWork
             Console.WriteLine("--> Unit of work committed successfully");
             return true;
         }
-        catch
+
+
+        catch (Exception ex)
         {
             throw new CommitFailedException();
         }

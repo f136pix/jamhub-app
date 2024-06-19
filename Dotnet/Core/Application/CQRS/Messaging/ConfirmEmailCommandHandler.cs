@@ -22,6 +22,8 @@ public class ConfirmEmailCommandHandler : IRequestHandler<ConfirmEmailCommand, b
 
     public async Task<bool> Handle(ConfirmEmailCommand request, CancellationToken cancellationToken)
     {
+        
+        // service has too much business logic and should be in a proper class
         await _peopleService.ConfirmUserAsync(request);
         
         // convert to json string json string

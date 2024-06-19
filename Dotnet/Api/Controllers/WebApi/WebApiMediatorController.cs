@@ -52,6 +52,10 @@ public partial class WebApiMediatorController : BaseApiMediator
         {
             return NotFound(ex.Message);
         }
+        catch (BandNotFoundException ex)
+        {
+            return NotFound(ex.Message);
+        }
         catch (Exception ex)
         {
             Console.Write(ex.ToString());

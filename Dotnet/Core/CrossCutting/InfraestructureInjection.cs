@@ -15,6 +15,7 @@ namespace DemoLibrary.CrossCutting
             services.AddScoped<IPeopleRepository, PeopleRepository>();
             services.AddScoped<IBandRepository, BandRepository>();
             services.AddScoped<IConfirmationTokenRepository, ConfirmationTokenRepository>();
+            services.AddScoped<IBlacklistRepository, BlacklistRepository>();
             return services;
         }
 

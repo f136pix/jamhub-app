@@ -56,18 +56,6 @@ public class PeopleCommandHandler :
             // PersonCreateDto dto = request.dto;
             var dto = request.dto;
 
-            _logger.WriteLog($"--> Creating person with email: {dto.Email}");
-            if (await _repository.IsEmailExistsAsync(dto.Email))
-                throw new AlreadyExistsException("Email");
-
-            if (dto.Id.HasValue)
-            {
-                if (await _repository.GetPersonByIdAsync(dto.Id.Value) != null)
-                {
-                    throw new AlreadyExistsException("Id");
-                }
-            }
-
             return await _peopleService.RegisterUserAsync(dto);
         }
         catch (Exception ex)
@@ -82,45 +70,10 @@ public class PeopleCommandHandler :
         // PersonUpdateDto dto = request.dto;
         var dto = request.dto;
 
-        var person = await _repository.GetPersonByIdAsync(dto.Id);
-
-        if (person == null)
-            throw new PersonNotFoundException(dto.Id);
-
-        // person.FirstName = dto.FirstName;
-        // person.LastName = dto.LastName;
-        // person.Instrument = dto.Instrument;
-        // person.CellphoneNumber = dto.CellphoneNumber;
-        // person.CityName = dto.CityName;
-
-        // updates our person
-        _mapper.Map(dto, person);
-
-        // ads the person to the recieved bands
-        if (dto.BandIds != null)
-        {
-            foreach (var bandId in dto.BandIds)
-            {
-                await _bandRepository.GetBandByIdAsync(bandId).ContinueWith(task =>
-                {
-                    var band = task.Result;
-
-                    if (band == null)
-                    {
-                        _logger.WriteLog($"--> Band with id {bandId} not found!");
-                        throw new BandNotFoundException(bandId);
-                    }
-
-                    person.Bands.Add(band);
-                });
-            }
-            // {
-            //     person.Bands.Add(new BandModel { Name = band });
-            // }
-        }
+        var updatedPerson = await _repository.UpdatePersonAsync(dto);
 
         await _uow.CommitAsync();
 
-        return person;
+        return updatedPerson;
     }
 }

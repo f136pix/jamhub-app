@@ -1,0 +1,7 @@
+2024-06-18 15:47:55.249 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = token.blacklisted Message = {"jti":"a79fab0b-66e0-4d48-83c4-9d67324d1f4f","exp":1718741587}
+2024-06-18 15:52:15.606 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = token.blacklisted Message = {"jti":"a79fab0b-66e0-4d48-83c4-9d67324d1f4f","exp":1718741587}
+2024-06-18 23:42:07.120 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = token.blacklisted Message = {"jti":"cde6d5e4-aa7b-47c3-a82e-f990f9c34b6b","exp":1718849852}
+2024-06-18 23:52:48.988 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = token.blacklisted Message = {"jti":"cde6d5e4-aa7b-47c3-a82e-f990f9c34b6b","exp":1718849852}
+2024-06-18 23:53:14.635 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = token.blacklisted Message = {"jti":"cde6d5e4-aa7b-47c3-a82e-f990f9c34b6b","exp":1718849852}
+2024-06-18 23:56:12.841 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = token.blacklisted Message = {"jti":"cde6d5e4-aa7b-47c3-a82e-f990f9c34b6b","exp":1718849852}
+2024-06-18 23:56:43.051 -03:00 [INF] --> Consumer Recieved Message: Queue = rails.dotnet, Routing Key = token.blacklisted Message = {"jti":"cde6d5e4-aa7b-47c3-a82e-f990f9c34b6b","exp":1718849852}

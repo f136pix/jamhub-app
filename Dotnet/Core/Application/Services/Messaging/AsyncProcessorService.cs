@@ -69,6 +69,7 @@ public class AsyncProcessorService : IAsyncProcessorService
         catch (Exception ex)
         {
             Console.WriteLine($"--> Error processing message: {ex.Message}");
+            // Console.WriteLine($"--> {ex.ToString()}");
         }
     }
 
@@ -136,18 +137,16 @@ public class AsyncProcessorService : IAsyncProcessorService
 
     private async Task HandleBlacklistedToken(object message)
     {
+        Console.WriteLine("--> Fell in handleBlacklistedToken");
+        var createBlacklistedTokenDto =
+            Newtonsoft.Json.JsonConvert.DeserializeObject<CreateBlacklistDto>(message.ToString()!);
+        
         using (var scope = _serviceScopeFactory.CreateScope())
         {
             var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
-            Console.WriteLine("--> Fell in handleBlacklistedToken");
-            var createBlacklistedTokenDto =
-                Newtonsoft.Json.JsonConvert.DeserializeObject<CreateBlacklistedTokenDto>(message.ToString()!);
 
-            Console.WriteLine(createBlacklistedTokenDto.Jti);
-            Console.WriteLine(createBlacklistedTokenDto.ExpiryDate);
-            
-             var createBlacklistedTokenCommand = new BlacklistCommand.CreateBlacklistCommand(createBlacklistedTokenDto!);
-             await mediator.Send(createBlacklistedTokenCommand);
+            var createBlacklistedTokenCommand = new CreateBlacklistCommand(createBlacklistedTokenDto!);
+            await mediator.Send(createBlacklistedTokenCommand);
         }
     }
 }
