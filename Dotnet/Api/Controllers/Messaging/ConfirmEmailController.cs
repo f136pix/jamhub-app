@@ -10,7 +10,7 @@ namespace Api.Controllers;
 [Route("confirm")]
 public class ConfirmEmailController : WebApiMediatorController
 {
-    private new  static readonly string OkMsg = @"
+    private new static readonly string OkMsg = @"
 <html>
     <head>
         <title>Account Confirmed</title>
@@ -41,7 +41,6 @@ public class ConfirmEmailController : WebApiMediatorController
     [HttpGet("{confirmation_token}")]
     public async Task<ContentResult> Get(string confirmation_token)
     {
-        // throw new NotImplementedException();
         return await HandleRequestHTML<ConfirmEmailCommand>(() => new ConfirmEmailCommand(confirmation_token));
     }
 }

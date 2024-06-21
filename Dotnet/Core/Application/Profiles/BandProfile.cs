@@ -4,9 +4,9 @@ using DemoLibrary.Domain.Models;
 
 namespace DemoLibrary.Application.Profiles;
 
-public class BandsProfile : Profile
+public class BandProfile : Profile
 {
-        public BandsProfile()
+        public BandProfile()
         {
             // source  -> target
             // source : entry value 

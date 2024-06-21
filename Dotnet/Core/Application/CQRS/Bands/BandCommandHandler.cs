@@ -50,9 +50,8 @@ public class BandCommandHandler :
             throw new AlreadyExistsException("Name");
 
         if (await _peopleRepository.GetByIdAsync(dto.CreatorId) == null)
-        {
             throw new PersonNotFoundException(dto.CreatorId);
-        }
+
 
         await _repository.AddAsync(band);
 

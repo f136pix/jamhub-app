@@ -5,9 +5,9 @@ using DemoLibrary.Domain.Models;
 
 namespace DemoLibrary.Application.Profiles;
 
-public class BlacklistProfile : Profile
+public class BlacklistedTokenProfile : Profile
 {
-    public BlacklistProfile()
+    public BlacklistedTokenProfile()
     {
         // source  -> target
         // source : entry value 
