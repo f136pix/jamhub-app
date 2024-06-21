@@ -1,8 +1,7 @@
+using DemoLibrary.Application.DataAccess;
 using DemoLibrary.Application.Services.Messaging;
-using DemoLibrary.Application.Services.People;
 using DemoLibrary.Domain.Exceptions;
-using DemoLibrary.Infraestructure.DataAccess;
-using DemoLibrary.Infraestructure.DataAccess.UnitOfWork;
+using DemoLibrary.Domain.Models;
 using DemoLibrary.Infraestructure.Messaging.Async;
 using MediatR;
 using Newtonsoft.Json;
@@ -11,24 +10,46 @@ namespace DemoLibrary.Application.CQRS.Messaging;
 
 public class ConfirmEmailCommandHandler : IRequestHandler<ConfirmEmailCommand, bool>
 {
-    private IAsyncMessagePublisher _asyncMessagePublisher;
-    private IPeopleService _peopleService;
+    private readonly IAsyncMessagePublisher _asyncMessagePublisher;
+    private readonly ITokenRepository<ConfirmationToken> _tokenRepository;
+    private readonly IUnitOfWork _uow;
+    // private IPeopleService _peopleService;
 
-    public ConfirmEmailCommandHandler(RabbitMqMessagePublisher messagePublisher, IPeopleService peopleService)
+    public ConfirmEmailCommandHandler(RabbitMqMessagePublisher messagePublisher,
+        ITokenRepository<ConfirmationToken> tokenRepository,
+        IUnitOfWork uow)
     {
-        _peopleService = peopleService;
         _asyncMessagePublisher = messagePublisher;
+        _tokenRepository = tokenRepository;
+        _uow = uow;
     }
 
     public async Task<bool> Handle(ConfirmEmailCommand request, CancellationToken cancellationToken)
     {
-        
-        // service has too much business logic and should be in a proper class
-        await _peopleService.ConfirmUserAsync(request);
-        
-        // convert to json string json string
-        var token = JsonConvert.SerializeObject(request);
+        // await _peopleService.ConfirmUserAsync(request);
 
-        return await _asyncMessagePublisher.PublishAsync(token, "amq.direct", RoutingKeysConfig.ConfirmEmail);
+        var token = request.ConfirmationToken;
+
+        var user = await _tokenRepository.GetByIdAsync(token)
+            .ContinueWith(confirmationToken => confirmationToken.Result.User);
+
+        if (user == null)
+        {
+            throw new CouldNotValidateUser("Invalid token");
+        }
+
+        if (user.Verified)
+        {
+            throw new CouldNotValidateUser("User already verified");
+        }
+
+        user.Verified = true;
+
+        await _uow.CommitAsync();
+
+        // convert to json string
+        var jsonToken = JsonConvert.SerializeObject(request);
+
+        return await _asyncMessagePublisher.PublishAsync(jsonToken, "amq.direct", RoutingKeysConfig.ConfirmEmail);
     }
 }

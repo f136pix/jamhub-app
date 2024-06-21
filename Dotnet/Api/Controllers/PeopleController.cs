@@ -25,7 +25,7 @@ public class PeopleController : WebApiMediatorController
 
     // GET: api/people/5
     [HttpGet("{id}")]
-    public Task<ActionResult<Person>> Get(int id)
+    public Task<ActionResult<Person>> Get(long id)
     {
         return HandleRequest<GetPersonByIdQuery, Person>(() => new GetPersonByIdQuery(id));
     }

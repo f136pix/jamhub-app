@@ -1,4 +1,5 @@
 using AutoMapper;
+using DemoLibrary.Application.DataAccess;
 using DemoLibrary.Application.Dtos.Band;
 using DemoLibrary.Application.Profiles;
 using DemoLibrary.Business.Exceptions;
@@ -8,6 +9,7 @@ using DemoLibrary.Domain.Models;
 using DemoLibrary.Infraestructure.DataAccess;
 using DemoLibrary.Infraestructure.DataAccess.UnitOfWork;
 using DemoLibrary.Infraestructure.Messaging.Async;
+using DemoLibrary.Models;
 using MediatR;
 
 namespace DemoLibrary.Application.CQRS.Band;
@@ -15,15 +17,15 @@ namespace DemoLibrary.Application.CQRS.Band;
 public class BandCommandHandler :
     IRequestHandler<CreateBandCommand, Domain.Models.Band>
 {
-    private readonly IBandRepository _repository;
-    private readonly IPeopleRepository _peopleRepository;
+    private readonly ICommonRepository<Domain.Models.Band> _repository;
+    private readonly ICommonRepository<Person> _peopleRepository;
     private readonly IUnitOfWork _uow;
     private readonly IMapper _mapper;
     private LoggerBase _logger;
 
     public BandCommandHandler(
-        IBandRepository repository,
-        IPeopleRepository peopleRepository,
+        ICommonRepository<Domain.Models.Band> repository,
+        ICommonRepository<Person> peopleRepository,
         IUnitOfWork uow,
         IMapper mapper,
         ILoggerBaseFactory loggerFactory
@@ -42,23 +44,19 @@ public class BandCommandHandler :
         // PersonCreateDto dto = request.dto;
         var dto = request.dto;
 
-        _logger.WriteLog($"--> Creating band with name: {dto.Name}");
-
         var band = _mapper.Map<Domain.Models.Band>(dto);
 
-        if (await _repository.isBandExistsAsync(dto.Name))
+        if (await _repository.GetByProperty("Name", dto.Name) != null)
             throw new AlreadyExistsException("Name");
 
-        if (await _peopleRepository.GetPersonByIdAsync(dto.CreatorId) == null)
+        if (await _peopleRepository.GetByIdAsync(dto.CreatorId) == null)
         {
             throw new PersonNotFoundException(dto.CreatorId);
         }
 
-        await _repository.InsertBandAsync(band);
+        await _repository.AddAsync(band);
 
         await _uow.CommitAsync();
-        _logger.WriteLog($"--> Band with name {band.Name} created succefully!");
-
         return band;
     }
 }

@@ -1,4 +1,5 @@
 using AutoMapper;
+using DemoLibrary.Application.DataAccess;
 using DemoLibrary.Business.Exceptions;
 using DemoLibrary.Infraestructure.DataAccess;
 using DemoLibrary.Infraestructure.DataAccess.UnitOfWork;
@@ -7,7 +8,7 @@ using MediatR;
 
 namespace DemoLibrary.Application.CQRS.Blacklist;
 
-public class BlacklistCommandHandler : IRequestHandler<CreateBlacklistCommand, Domain.Models.Blacklist>
+public class BlacklistCommandHandler : IRequestHandler<CreateBlacklistCommand, Domain.Models.BlacklistedToken>
 {
     private readonly IBlacklistRepository _blacklistRepository;
     private readonly IUnitOfWork _uow;
@@ -20,7 +21,7 @@ public class BlacklistCommandHandler : IRequestHandler<CreateBlacklistCommand, D
         _mapper = mapper;
     }
 
-    public async Task<Domain.Models.Blacklist> Handle(CreateBlacklistCommand request,
+    public async Task<Domain.Models.BlacklistedToken> Handle(CreateBlacklistCommand request,
         CancellationToken cancellationToken)
     {
         var dto = request.dto;
@@ -31,7 +32,7 @@ public class BlacklistCommandHandler : IRequestHandler<CreateBlacklistCommand, D
             throw new AlreadyExistsException(dto.Jti);
         }
 
-        var blacklist = new Domain.Models.Blacklist
+        var blacklist = new Domain.Models.BlacklistedToken
         {
             Jti = dto.Jti,
             ExpiryDate = dto.ExpiryDate

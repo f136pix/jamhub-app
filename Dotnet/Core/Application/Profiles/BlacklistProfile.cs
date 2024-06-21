@@ -12,6 +12,6 @@ public class BlacklistProfile : Profile
         // source  -> target
         // source : entry value 
         // target : mapped/ formated value
-        CreateMap<CreateBlacklistCommand, Blacklist>();
+        CreateMap<CreateBlacklistCommand, BlacklistedToken>();
     }
 }

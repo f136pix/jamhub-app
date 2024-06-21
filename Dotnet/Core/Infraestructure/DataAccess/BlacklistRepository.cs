@@ -1,3 +1,4 @@
+using DemoLibrary.Application.DataAccess;
 using DemoLibrary.Domain.Models;
 using DemoLibrary.Infraestructure.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
@@ -6,11 +7,12 @@ namespace DemoLibrary.Infraestructure.DataAccess;
 
 public interface IBlacklistRepository
 {
-    Task<Blacklist> GetBlacklistByJtiAsync(string jti);
-    Task<Blacklist> InsertBlacklistAsync(Blacklist blacklist);
+    Task<BlacklistedToken> GetBlacklistByJtiAsync(string jti);
+    Task<BlacklistedToken> InsertBlacklistAsync(BlacklistedToken blacklistedToken);
 }
 
-public class BlacklistRepository : IBlacklistRepository
+public class BlacklistRepository : ITokenRepository<BlacklistedToken>
+
 {
     private readonly ApplicationDbContext _context;
 
@@ -19,17 +21,36 @@ public class BlacklistRepository : IBlacklistRepository
         _context = context;
     }
 
-
-    public Task<Blacklist> GetBlacklistByJtiAsync(string jti)
+    public async Task<BlacklistedToken> InsertBlacklistAsync(BlacklistedToken blacklistedToken)
     {
-        return  _context.Blacklist.FirstOrDefaultAsync(x => x.Jti == jti);
+        await _context.BlacklistedTokens.AddAsync(blacklistedToken);
+        return blacklistedToken;
     }
 
-    public async Task<Blacklist> InsertBlacklistAsync(Blacklist blacklist)
+
+    public Task<IReadOnlyList<BlacklistedToken>> GetAllAsync()
     {
-        await _context.Blacklist.AddAsync(blacklist);
-        return blacklist;
+        throw new NotImplementedException();
     }
-    
-    
+
+    // <param name="jti">An <see cref="XmlConfigResource" /> jti from the token who must be retrieved.</param>
+    public Task<BlacklistedToken> GetByIdAsync(string jti)
+    {
+        return _context.BlacklistedTokens.FirstOrDefaultAsync(x => x.Jti == jti);
+    }
+
+    public Task<BlacklistedToken> DeleteAsync(string id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<BlacklistedToken> AddAsync(BlacklistedToken entity)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<BlacklistedToken> UpdateAsync(BlacklistedToken entity)
+    {
+        throw new NotImplementedException();
+    }
 }

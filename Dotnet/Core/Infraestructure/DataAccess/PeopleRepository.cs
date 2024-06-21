@@ -2,6 +2,7 @@ using DemoLibrary.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using AutoMapper;
+using DemoLibrary.Application.DataAccess;
 using DemoLibrary.Application.Dtos.People;
 using DemoLibrary.Business.Exceptions;
 using DemoLibrary.Domain.Exceptions;
@@ -9,90 +10,61 @@ using DemoLibrary.Infraestructure.DataAccess.Context;
 
 namespace DemoLibrary.Infraestructure.DataAccess;
 
-public interface IPeopleRepository
+public class PeopleRepository : ICommonRepository<Person>
 {
-    public Task<bool> IsEmailExistsAsync(string email);
-    public Task<List<Person>> GetPeopleAsync();
-    public Task<Person> InsertPersonAsync(Person person);
-    public Task<Person> GetPersonByIdAsync(int id);
-    public Task<Person> UpdatePersonAsync(UpdatePersonDto dto);
-}
-
-public class PeopleRepository : IPeopleRepository
-{
-    private readonly IBandRepository _bandRepository;
     private readonly ApplicationDbContext _context;
-    private readonly IMapper _mapper;
 
-    public PeopleRepository(IBandRepository bandRepository, ApplicationDbContext context, IMapper mapper)
+    public PeopleRepository(ApplicationDbContext context)
     {
-        _bandRepository = bandRepository;
         _context = context;
-        _mapper = mapper;
     }
 
-    public async Task<bool> IsEmailExistsAsync(string email)
-    {
-        return await _context.People.AnyAsync(p => p.Email == email);
-    }
 
-    public async Task<List<Person>> GetPeopleAsync()
+    public async Task<IReadOnlyList<Person>> GetAllAsync()
     {
         return await _context.People.ToListAsync();
     }
 
-    public async Task<Person> GetPersonByIdAsync(int id)
+    public async Task<Person> AddAsync(Person entity)
     {
-        return await _context.People.Include(p => p.Bands)
+        await _context.People.AddAsync(entity);
+        return entity;
+    }
+
+    public async Task<Person> UpdateAsync(Person entity)
+    {
+        var person = await _context.People.FindAsync(entity.Id);
+        person = entity;
+
+        return person;
+    }
+
+    public async Task<Person> GetByIdAsync(long id)
+    {
+        return await _context.People
             .FirstOrDefaultAsync(p => p.Id == id);
     }
 
-    public async Task<Person> InsertPersonAsync(Person person)
+    public Person GetByIdSync(long id)
     {
-        if (await IsEmailExistsAsync(person.Email))
-        {
-            throw new AlreadyExistsException("Email");
-        }
-
-        _context.People.Add(person);
-        return person;
+        throw new NotImplementedException();
     }
 
-    public async Task<Person> UpdatePersonAsync(UpdatePersonDto dto)
+    public Task<Person> DeleteAsync(long id)
     {
-        var person = await GetPersonByIdAsync(dto.Id);
+        throw new NotImplementedException();
+    }
 
-        if (person == null)
-            throw new PersonNotFoundException(dto.Id);
+    public async Task<Person> GetByProperty(string propertyName, string value)
+    {
+        var propertyInfo = typeof(Person).GetProperty(propertyName);
 
-        // person.FirstName = dto.FirstName;
-        // person.LastName = dto.LastName;
-        // person.Instrument = dto.Instrument;
-        // person.CellphoneNumber = dto.CellphoneNumber;
-        // person.CityName = dto.CityName;
-
-        // updates our person
-        _mapper.Map(dto, person);
-
-        // ads the person to the recieved bands
-        if (dto.BandIds != null)
+        if (propertyInfo == null)
         {
-            foreach (var bandId in dto.BandIds)
-            {
-                await _bandRepository.GetBandByIdAsync(bandId).ContinueWith(task =>
-                {
-                    var band = task.Result;
-
-                    if (band == null)
-                    {
-                        throw new BandNotFoundException(bandId);
-                    }
-
-                    person.Bands.Add(band);
-                });
-            }
+            throw new ArgumentException($"Property '{propertyName}' not found on Person entity.");
         }
-
-        return person;
+        
+        return await _context.People
+            .FirstOrDefaultAsync(p => p.GetType().GetProperty(propertyName).GetValue(p).ToString() == value);
     }
 }

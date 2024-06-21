@@ -34,8 +34,8 @@ public class ApplicationDbContext : DbContext
     }
 
     public DbSet<Person> People { get; set; }
-    public DbSet<Picture> Picture { get; set; }
-    public DbSet<Band> Band { get; set; }
-    public DbSet<ConfirmationToken> ConfirmationToken { get; set; }
-    public DbSet<Blacklist> Blacklist { get; set; }
+    public DbSet<Picture> Pictures { get; set; }
+    public DbSet<Band> Bands { get; set; }
+    public DbSet<ConfirmationToken> ConfirmationTokens { get; set; }
+    public DbSet<BlacklistedToken> BlacklistedTokens { get; set; }
 }

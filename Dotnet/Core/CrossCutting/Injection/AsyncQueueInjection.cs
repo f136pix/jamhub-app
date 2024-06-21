@@ -26,13 +26,11 @@ namespace DemoLibrary.CrossCutting
                         global: false
                     );
 
-                    // queue parameters
                     var args = new Dictionary<string, object>
                     {
                         { "x-max-priority", 10 }
                     };
 
-                    // create queue if doesnt exists
                     channel.QueueDeclare(
                         queue: queue,
                         durable: true,

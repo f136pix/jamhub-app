@@ -10,7 +10,7 @@ public enum BandRoles
 }
 
 [Index(nameof(Name), IsUnique = true)]
-public class Band
+public class Band 
 {
     public int Id { get; set; }
     public string Name { get; set; }

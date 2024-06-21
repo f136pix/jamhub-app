@@ -1,13 +1,9 @@
 using System.Data.SqlTypes;
+using DemoLibrary.Application.DataAccess;
 using DemoLibrary.Business.Exceptions;
 using DemoLibrary.Infraestructure.DataAccess.Context;
 
 namespace DemoLibrary.Infraestructure.DataAccess.UnitOfWork;
-
-public interface IUnitOfWork
-{
-    Task<bool> CommitAsync();
-}
 
 public class UnitOfWork : IUnitOfWork
 {

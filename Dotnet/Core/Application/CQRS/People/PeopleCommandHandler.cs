@@ -1,15 +1,11 @@
 using System.Xml;
 using AutoMapper;
 using DemoLibrary.Application.CQRS.People;
+using DemoLibrary.Application.DataAccess;
 using DemoLibrary.Application.Dtos.People;
-using DemoLibrary.Application.Services.Messaging;
-using DemoLibrary.Application.Services.People;
 using DemoLibrary.Business.Exceptions;
 using DemoLibrary.CrossCutting.Logger;
-using DemoLibrary.Domain.Exceptions;
 using DemoLibrary.Domain.Models;
-using DemoLibrary.Infraestructure.DataAccess;
-using DemoLibrary.Infraestructure.DataAccess.UnitOfWork;
 using DemoLibrary.Infraestructure.Messaging.Async;
 using DemoLibrary.Models;
 using MediatR;
@@ -20,27 +16,24 @@ public class PeopleCommandHandler :
     IRequestHandler<CreatePersonCommand, Person>,
     IRequestHandler<UpdatePersonCommand, Person>
 {
-    private readonly IPeopleService _peopleService;
-    private readonly IConfirmationTokenRepository _confirmationTokenRepository;
-    private readonly IBandRepository _bandRepository;
-    private readonly IPeopleRepository _repository;
+    private readonly ITokenRepository<ConfirmationToken> _confirmationTokenRepository;
+    private readonly ICommonRepository<Band> _bandRepository;
+    private readonly ICommonRepository<Person> _repository;
     private readonly IUnitOfWork _uow;
     private readonly IMapper _mapper;
     private IAsyncMessagePublisher _asyncMessagePublisher;
     private LoggerBase _logger;
 
     public PeopleCommandHandler(
-        IPeopleService peopleService,
-        IConfirmationTokenRepository confirmationTokenRepository,
-        IBandRepository bandRepository,
-        IPeopleRepository repository,
+        ITokenRepository<ConfirmationToken> confirmationTokenRepository,
+        ICommonRepository<Band> bandRepository,
+        ICommonRepository<Person> repository,
         IUnitOfWork uow,
         IMapper mapper,
         RabbitMqMessagePublisher asyncMessagePublisher,
         ILoggerBaseFactory loggerFactory
     )
     {
-        _peopleService = peopleService;
         _confirmationTokenRepository = confirmationTokenRepository;
         _bandRepository = bandRepository;
         _repository = repository;
@@ -54,10 +47,28 @@ public class PeopleCommandHandler :
     {
         try
         {
-            // PersonCreateDto dto = request.dto;
-            var dto = request.dto;
+            CreatePersonDto dto = request.dto;
+            if (await _repository.GetByProperty("Email", dto.Email) != null)
+                throw new AlreadyExistsException("Email");
 
-            return await _peopleService.RegisterUserAsync(dto);
+            if (dto.Id.HasValue && await _repository.GetByIdAsync(dto.Id.Value) != null)
+                throw new AlreadyExistsException("Id");
+
+            if (dto.ConfirmationToken == null)
+                throw new ArgumentNullException(nameof(ConfirmationToken.Token));
+
+            Person person = _mapper.Map<Person>(dto);
+            dto.Id = person.Id;
+
+            ConfirmationToken confirmationToken = _mapper.Map<ConfirmationToken>(dto);
+
+            await _repository.AddAsync(person);
+
+            await _confirmationTokenRepository.AddAsync(confirmationToken);
+
+            await _uow.CommitAsync();
+
+            return person;
         }
         catch (Exception ex)
         {
@@ -68,10 +79,10 @@ public class PeopleCommandHandler :
 
     public async Task<Person> Handle(UpdatePersonCommand request, CancellationToken cancellationToken)
     {
-        // PersonUpdateDto dto = request.dto;
-        var dto = request.dto;
+        UpdatePersonDto dto = request.dto;
 
-        var updatedPerson = await _repository.UpdatePersonAsync(dto);
+        var person = _mapper.Map<Person>(dto);
+        var updatedPerson = await _repository.UpdateAsync(person);
 
         await _uow.CommitAsync();
 

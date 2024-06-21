@@ -1,18 +1,11 @@
-using System.Configuration;
-using System.Net.Mime;
 using System.Reflection;
 using DemoLibrary;
-using DemoLibrary.Application.Services.Messaging;
-using DemoLibrary.Application.Services.People;
 using DemoLibrary.CrossCutting;
 using DemoLibrary.CrossCutting.Queues;
 using DemoLibrary.CrossCutting.Queues.Configuration;
-using DemoLibrary.Infraestructure.DataAccess;
 using DemoLibrary.Infraestructure.DataAccess.Context;
 using DemoLibrary.Infraestructure.Messaging._Mail;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
-using Microsoft.Extensions.Options;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);

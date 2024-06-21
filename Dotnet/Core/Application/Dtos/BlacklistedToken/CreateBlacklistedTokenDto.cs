@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace DemoLibrary.Application.Dtos.Blacklist;
 
-public class CreateBlacklistDto
+public class CreateBlacklistedTokenDto
 {
     [JsonProperty("jti")] 
     public string Jti { get; set; }

@@ -13,5 +13,6 @@ public class UpdatePersonDto
     public string? CellphoneNumber { get; set; }
     // public string Email { get; set; } email should be immutable
     public string? CityName { get; set; }
-    public IEnumerable<int>? BandIds { get; set; }
+    public bool? Verified { get; set; }
+    public IEnumerable<int>? BandsIds { get; set; }
 }

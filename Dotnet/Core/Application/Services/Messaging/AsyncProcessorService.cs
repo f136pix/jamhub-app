@@ -141,7 +141,7 @@ public class AsyncProcessorService : IAsyncProcessorService
     {
         Console.WriteLine("--> Fell in handleBlacklistedToken");
         var createBlacklistedTokenDto =
-            Newtonsoft.Json.JsonConvert.DeserializeObject<CreateBlacklistDto>(message.ToString()!);
+            Newtonsoft.Json.JsonConvert.DeserializeObject<CreateBlacklistedTokenDto>(message.ToString()!);
         
         using (var scope = _serviceScopeFactory.CreateScope())
         {

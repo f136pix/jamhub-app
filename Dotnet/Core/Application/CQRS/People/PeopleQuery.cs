@@ -10,6 +10,6 @@ public record GetPeopleListQuery() :  IRequest<List<Person>>;
 //     
 // }
 
-public record GetPersonByIdQuery(int id) : IRequest<Person>;
+public record GetPersonByIdQuery(long id) : IRequest<Person>;
 
 
