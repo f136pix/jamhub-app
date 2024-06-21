@@ -24,7 +24,7 @@ public class BlacklistCommandHandler : IRequestHandler<CreateBlacklistCommand, D
         CancellationToken cancellationToken)
     {
         var dto = request.dto;
-
+        
         var jtiAlreadyBlacklisted = await _blacklistRepository.GetBlacklistByJtiAsync(dto.Jti);
         if (jtiAlreadyBlacklisted != null)
         {

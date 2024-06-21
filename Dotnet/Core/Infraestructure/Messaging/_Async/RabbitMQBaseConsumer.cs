@@ -14,12 +14,12 @@ public abstract class RabbitMqBaseConsumer : IAsyncMessageConsumer
     protected RabbitMqLogger Logger;
 
 
-    public RabbitMqBaseConsumer(IConnection rabbitConnection, string queue)
+    public RabbitMqBaseConsumer(IConnection rabbitConnection, string queue, ILoggerBaseFactory loggerFactory)
     {
         RabbitConnection = rabbitConnection;
         Channel = RabbitConnection.CreateModel();
         Queue = queue;
-        Logger = new RabbitMqLogger(logDirectory: "AMPQ");
+        Logger = loggerFactory.CreateRabbitMqLogger("AMPQ");
     }
 
     int _currentRetry = 0;

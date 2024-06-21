@@ -1,4 +1,5 @@
 using DemoLibrary.Application.Services.Messaging;
+using DemoLibrary.CrossCutting.Logger;
 using DemoLibrary.Infraestructure.Messaging._Mail;
 using DemoLibrary.Infraestructure.Messaging.Async;
 using Microsoft.AspNetCore.Builder;
@@ -54,9 +55,11 @@ namespace DemoLibrary.CrossCutting
                 Console.WriteLine($"-->Publisher connection : {rabbitConnection}");
 
                 var rabbitMqSettings = sp.GetRequiredService<IOptions<RabbitMQSettings>>();
+                var loggerFactory = sp.GetRequiredService<ILoggerBaseFactory>();
+
 
                 // adds publisher to the service collection // dependency injection
-                return new RabbitMqMessagePublisher(rabbitConnection, "dotnet.rails", rabbitMqSettings);
+                return new RabbitMqMessagePublisher(rabbitConnection, "dotnet.rails", rabbitMqSettings, loggerFactory);
             });
             return services;
         }
@@ -70,9 +73,12 @@ namespace DemoLibrary.CrossCutting
                 Console.WriteLine($"-->Publisher connection : {rabbitConnection}");
 
                 var asyncProcessorService = sp.GetRequiredService<IAsyncProcessorService>();
+                
+                var loggerFactory = sp.GetRequiredService<ILoggerBaseFactory>();
+
 
                 // adds consumer to the service collection // dependency injection
-                return new RabbitMqMessageConsumer(rabbitConnection, "rails.dotnet", asyncProcessorService);
+                return new RabbitMqMessageConsumer(rabbitConnection, "rails.dotnet", asyncProcessorService, loggerFactory);
             });
             return services;
         }

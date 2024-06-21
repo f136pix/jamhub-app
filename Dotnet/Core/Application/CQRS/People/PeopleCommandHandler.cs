@@ -36,7 +36,8 @@ public class PeopleCommandHandler :
         IPeopleRepository repository,
         IUnitOfWork uow,
         IMapper mapper,
-        RabbitMqMessagePublisher asyncMessagePublisher
+        RabbitMqMessagePublisher asyncMessagePublisher,
+        ILoggerBaseFactory loggerFactory
     )
     {
         _peopleService = peopleService;
@@ -46,7 +47,7 @@ public class PeopleCommandHandler :
         _uow = uow;
         _mapper = mapper;
         _asyncMessagePublisher = asyncMessagePublisher;
-        _logger = new LoggerBase("PeopleCommandHandler");
+        _logger = loggerFactory.Create("Create-Person");
     }
 
     public async Task<Person> Handle(CreatePersonCommand request, CancellationToken cancellationToken)

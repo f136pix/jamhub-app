@@ -18,13 +18,14 @@ public class RabbitMqMessagePublisher : RabbitMQBase
     public RabbitMqMessagePublisher(
         IConnection rabbitConnection,
         string queue,
-        IOptions<RabbitMQSettings> rabbitMqSettings
+        IOptions<RabbitMQSettings> rabbitMqSettings,
+        ILoggerBaseFactory loggerFactory
     ) :
         base(rabbitConnection, queue, rabbitMqSettings)
     {
         Console.WriteLine($"--> RabbitMqMessagePublisher queue: {_queue}");
 
-        _logger = new RabbitMqLogger(logDirectory: "AMPQ");
+        _logger = loggerFactory.CreateRabbitMqLogger("AMPQ-Publisher");
         InitializeRabbitMq();
     }
 

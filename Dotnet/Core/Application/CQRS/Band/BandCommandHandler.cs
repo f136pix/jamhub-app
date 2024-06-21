@@ -25,14 +25,15 @@ public class BandCommandHandler :
         IBandRepository repository,
         IPeopleRepository peopleRepository,
         IUnitOfWork uow,
-        IMapper mapper
+        IMapper mapper,
+        ILoggerBaseFactory loggerFactory
     )
     {
         _repository = repository;
         _peopleRepository = peopleRepository;
         _uow = uow;
         _mapper = mapper;
-        _logger = new LoggerBase("PeopleCommandHandler");
+        _logger = loggerFactory.Create("Create-Band");
     }
 
 

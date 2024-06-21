@@ -10,8 +10,10 @@ namespace DemoLibrary.Infraestructure.Messaging.Async;
 public class RabbitMqMessageConsumer : RabbitMqBaseConsumer
 {
     private readonly IAsyncProcessorService _asyncProcessorService;
-    public RabbitMqMessageConsumer(IConnection rabbitConnection, string queue, IAsyncProcessorService asyncProcessorService)
-        : base(rabbitConnection, queue)
+
+    public RabbitMqMessageConsumer(IConnection rabbitConnection, string queue,
+        IAsyncProcessorService asyncProcessorService, ILoggerBaseFactory loggerFactory)
+        : base(rabbitConnection, queue, loggerFactory)
     {
         _asyncProcessorService = asyncProcessorService;
         //InitializeConsumer();
@@ -22,7 +24,7 @@ public class RabbitMqMessageConsumer : RabbitMqBaseConsumer
         // deserialize the json string to dotnet object 
         var deserializedMessage = JsonConvert.DeserializeObject<object>(message);
         Console.WriteLine($"--> Deserialized message = {deserializedMessage}");
-        
+
         await _asyncProcessorService.ProcessMessage(message, routingKey);
     }
 }

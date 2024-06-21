@@ -11,6 +11,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace DemoLibrary.Application.Services.Messaging;
 
@@ -32,7 +33,8 @@ public class AsyncProcessorService : IAsyncProcessorService
         IMediator mediator,
         IMapper mapper,
         IConfiguration configuration,
-        IServiceScopeFactory serviceScopeFactory
+        IServiceScopeFactory serviceScopeFactory,
+        ILoggerBaseFactory loggerFactory
     )
     {
         _mediator = mediator;
@@ -48,7 +50,7 @@ public class AsyncProcessorService : IAsyncProcessorService
         };
         _configuration = configuration;
         _serviceScopeFactory = serviceScopeFactory;
-        _logger = new RabbitMqLogger(logDirectory: "AMPQ");
+        _logger = loggerFactory.CreateRabbitMqLogger("AMPQ-Consumer");
     }
 
     public async Task ProcessMessage(object message, string routingKey)

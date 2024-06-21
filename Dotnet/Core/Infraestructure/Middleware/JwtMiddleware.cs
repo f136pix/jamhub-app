@@ -79,7 +79,7 @@ public class JwtMiddleware
             using (var scope = _serviceScopeFactory.CreateScope())
             {
                 var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
-                
+
                 var isAuthorized = await mediator.Send(new CheckBlacklistQuery(jti));
                 if (!isAuthorized)
                 {
@@ -87,14 +87,16 @@ public class JwtMiddleware
                 }
             }
 
-
             var id = jwtToken.Claims.First(claim => claim.Type == JwtRegisteredClaimNames.Sub).Value;
             var email = jwtToken.Claims.First(claim => claim.Type == JwtRegisteredClaimNames.Email).Value;
-
 
             // adds to http context
             context.Items["Id"] = id;
             context.Items["Email"] = email;
+
+            // proccess guid
+            var processId = Guid.NewGuid().ToString();
+            context.Items["ProcessId"] = processId;
 
             await _next(context);
         }
