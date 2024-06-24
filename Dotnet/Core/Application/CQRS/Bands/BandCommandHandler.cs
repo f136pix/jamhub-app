@@ -52,7 +52,6 @@ public class BandCommandHandler :
         if (await _peopleRepository.GetByIdAsync(dto.CreatorId) == null)
             throw new PersonNotFoundException(dto.CreatorId);
 
-
         await _repository.AddAsync(band);
 
         await _uow.CommitAsync();

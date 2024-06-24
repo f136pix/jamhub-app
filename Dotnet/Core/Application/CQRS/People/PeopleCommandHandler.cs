@@ -67,6 +67,8 @@ public class PeopleCommandHandler :
             await _confirmationTokenRepository.AddAsync(confirmationToken);
 
             await _uow.CommitAsync();
+            
+            _logger.WriteLog($"Created user with email {request.dto.Email} successfully");
 
             return person;
         }

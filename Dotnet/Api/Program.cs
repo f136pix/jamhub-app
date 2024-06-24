@@ -52,7 +52,7 @@ if (isDevelopment)
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseNpgsql(connectionString, b => b.MigrationsAssembly("Api")));
 
-    Console.WriteLine("--> Dev RabbitMq Connection");
+    Console.WriteLine("--> Dev Connection");
 }
 
 if (isProduction)
@@ -77,7 +77,6 @@ if (isProduction)
         options.UseNpgsql(connectionString, b => b.MigrationsAssembly("Api")));
 
     // run pending migrations 
-
 
     Console.WriteLine("--> Prod Connection");
 }

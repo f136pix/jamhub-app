@@ -48,6 +48,7 @@ public class ConfirmationTokenRepository : ITokenRepository<ConfirmationToken>
     public async Task<ConfirmationToken> GetByIdAsync(string token)
     {
         return await _context.ConfirmationTokens
+            .Include(c => c.User)
             .FirstOrDefaultAsync(c => c.Token == token);
     }
 

@@ -57,14 +57,19 @@ public class PeopleRepository : ICommonRepository<Person>
 
     public async Task<Person> GetByProperty(string propertyName, string value)
     {
-        var propertyInfo = typeof(Person).GetProperty(propertyName);
+        Person? result;
 
-        if (propertyInfo == null)
+        if (propertyName == "Email")
         {
-            throw new ArgumentException($"Property '{propertyName}' not found on Person entity.");
+            result = await _context.People
+                .FirstOrDefaultAsync(p => p.Email == value);
         }
-        
-        return await _context.People
-            .FirstOrDefaultAsync(p => p.GetType().GetProperty(propertyName).GetValue(p).ToString() == value);
+        else
+        {
+            throw new ArgumentException(
+                $"Property '{propertyName}' not found on Person entity, or not implemented in method.");
+        }
+
+        return result;
     }
 }

@@ -35,7 +35,9 @@
     <ItemGroup>
       <Folder Include="tmp\logs\AMPQ-Publisher\" />
       <Folder Include="tmp\logs\AMPQ\" />
+      <Folder Include="tmp\logs\Confirm-Person\" />
       <Folder Include="tmp\logs\Create-Band\" />
+      <Folder Include="tmp\logs\Create-Person\" />
     </ItemGroup>
 
 </Project>

@@ -1,0 +1,5 @@
+2024-06-23 21:33:18.714 -03:00 [INF] 
+**************************************************
+id:ServerRequest
+proccess_id: ServerRequest
+Created user with email tetesteloggdaerdar@gmail.com successfully

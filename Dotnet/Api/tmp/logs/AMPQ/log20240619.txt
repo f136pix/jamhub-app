@@ -1,5 +1,0 @@
-2024-06-19 18:09:55.643 -03:00 [INF] 
-**************************************************
-id:ServerRequest
-proccess_id: ServerRequest
-Consumer Recieved Message: Queue = rails.dotnet, Routing Key = user.registered Message = {"id":70,"email":"testecofsdadanrefirmdaddaaedsmail@gmail.com","confirmation_token":"bg4vM8f2UEccsAbCpbyg"}

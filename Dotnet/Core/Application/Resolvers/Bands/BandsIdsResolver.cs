@@ -27,6 +27,8 @@ public class BandsIdsResolver : IValueResolver<UpdatePersonDto, Person, ICollect
         foreach (int bandId in source.BandsIds)  
         {
             var band =  _repository.GetByIdSync(bandId);  
+            Console.WriteLine($"{band.Name}");
+            
             if (band != null)
             {
                 bands.Add(band);

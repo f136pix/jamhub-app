@@ -5,12 +5,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DemoLibrary.Infraestructure.DataAccess;
 
-public interface IBlacklistRepository
-{
-    Task<BlacklistedToken> GetBlacklistByJtiAsync(string jti);
-    Task<BlacklistedToken> InsertBlacklistAsync(BlacklistedToken blacklistedToken);
-}
-
 public class BlacklistRepository : ITokenRepository<BlacklistedToken>
 
 {
@@ -44,9 +38,10 @@ public class BlacklistRepository : ITokenRepository<BlacklistedToken>
         throw new NotImplementedException();
     }
 
-    public Task<BlacklistedToken> AddAsync(BlacklistedToken entity)
+    public async Task<BlacklistedToken> AddAsync(BlacklistedToken entity)
     {
-        throw new NotImplementedException();
+        await _context.BlacklistedTokens.AddAsync(entity);
+        return entity;
     }
 
     public Task<BlacklistedToken> UpdateAsync(BlacklistedToken entity)

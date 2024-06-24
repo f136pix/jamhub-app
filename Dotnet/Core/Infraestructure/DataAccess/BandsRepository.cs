@@ -53,9 +53,22 @@ namespace DemoLibrary.Infraestructure.DataAccess
             throw new NotImplementedException();
         }
 
-        public Task<Band> GetByProperty(string propertyName, string value)
+        public async Task<Band> GetByProperty(string propertyName, string value)
         {
-            throw new NotImplementedException();
+            Band? result;
+
+            if (propertyName == "Name")
+            {
+                result = await _context.Bands
+                    .FirstOrDefaultAsync(p => p.Name == value);
+            }
+            else
+            {
+                throw new ArgumentException(
+                    $"Property '{propertyName}' not found on Bands entity, or not implemented in method.");
+            }
+
+            return result;
         }
 
         public async Task<bool> IsBandExistsAsync(string name)

@@ -28,13 +28,15 @@ public class AsyncProcessorService : IAsyncProcessorService
     private readonly IMapper _mapper;
     private readonly IConfiguration _configuration;
     private readonly RabbitMqLogger _logger;
+    private readonly IHttpContextAccessor _httpContextAccessor;
 
     public AsyncProcessorService(
         IMediator mediator,
         IMapper mapper,
         IConfiguration configuration,
         IServiceScopeFactory serviceScopeFactory,
-        ILoggerBaseFactory loggerFactory
+        ILoggerBaseFactory loggerFactory,
+        IHttpContextAccessor httpContextAccessor
     )
     {
         _mediator = mediator;
@@ -51,6 +53,7 @@ public class AsyncProcessorService : IAsyncProcessorService
         _configuration = configuration;
         _serviceScopeFactory = serviceScopeFactory;
         _logger = loggerFactory.CreateRabbitMqLogger("AMPQ-Consumer");
+        _httpContextAccessor = httpContextAccessor;
     }
 
     public async Task ProcessMessage(object message, string routingKey)
@@ -104,9 +107,6 @@ public class AsyncProcessorService : IAsyncProcessorService
         {
             var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
 
-            var sendEmailCommand = new SendEmailCommand("Filipecocinel@gmail.com", subject, text);
-            await mediator.Send(sendEmailCommand);
-
             var createPersonDto = new CreatePersonDto
             {
                 Id = messageData.Id,
@@ -117,6 +117,9 @@ public class AsyncProcessorService : IAsyncProcessorService
             // saves user in dotnet db as well
             var createPersonCommand = new CreatePersonCommand(createPersonDto);
             await mediator.Send(createPersonCommand);
+
+            var sendEmailCommand = new SendEmailCommand("Filipecocinel@gmail.com", subject, text);
+            await mediator.Send(sendEmailCommand);
         }
 
         // // var sendEmailCommand = new SendEmailCommand(messageData.Email, subject, text);
@@ -142,7 +145,7 @@ public class AsyncProcessorService : IAsyncProcessorService
         Console.WriteLine("--> Fell in handleBlacklistedToken");
         var createBlacklistedTokenDto =
             Newtonsoft.Json.JsonConvert.DeserializeObject<CreateBlacklistedTokenDto>(message.ToString()!);
-        
+
         using (var scope = _serviceScopeFactory.CreateScope())
         {
             var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
