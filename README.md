@@ -10,7 +10,7 @@ the JWT token is
 decoded in the dotnet app the same way it would in the rails application and the service also keeps track of the
 blacklisted tokens.
 
-The async communication between the app is made through two RabbitMQ queues, and CQRS and DDD where the main patterns
+The async communication between the app is made through RabbitMQ , and CQRS and DDD where the main patterns
 praticed.
 
 App usage
