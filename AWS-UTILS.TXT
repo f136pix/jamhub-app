@@ -8,7 +8,7 @@ eksctl create cluster \
 --region us-west-2
 
 # eskctl delete cluster
-eksctl delete cluster --name scrumptious-mushroom-1717508089 --region us-west-2
+eksctl delete cluster --name jamhub --region us-west-2
 
 # create IAM OIDC provider
 cluster_name=jamhub
