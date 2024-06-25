@@ -1,0 +1,25 @@
+2024-06-25 13:27:38.673 -03:00 [INF] 
+**************************************************
+id:ServerRequest
+proccess_id: ServerRequest
+Consumer Recieved Message: Queue = rails.dotnet, Routing Key = user.registered Message = {"id":82,"email":"tetestelodaggdaerdar@gmail.com","confirmation_token":"xyyU9JaQJLndkd1PtAs9"}
+2024-06-25 16:01:58.944 -03:00 [INF] 
+**************************************************
+id:ServerRequest
+proccess_id: ServerRequest
+Consumer Recieved Message: Queue = rails.dotnet, Routing Key = token.blacklisted Message = {"jti":"1768793a-ce2c-44cc-8a0d-60621fa2ebb1","exp":1719428493}
+2024-06-25 16:01:59.010 -03:00 [INF] 
+**************************************************
+id:ServerRequest
+proccess_id: ServerRequest
+Consumer Recieved Message: Queue = rails.dotnet, Routing Key = token.blacklisted Message = {"jti":"1768793a-ce2c-44cc-8a0d-60621fa2ebb1","exp":1719428493}
+2024-06-25 16:01:59.014 -03:00 [INF] 
+**************************************************
+id:ServerRequest
+proccess_id: ServerRequest
+Consumer Recieved Message: Queue = rails.dotnet, Routing Key = token.blacklisted Message = {"jti":"1768793a-ce2c-44cc-8a0d-60621fa2ebb1","exp":1719428493}
+2024-06-25 16:01:59.018 -03:00 [INF] 
+**************************************************
+id:ServerRequest
+proccess_id: ServerRequest
+Consumer Recieved Message: Queue = rails.dotnet, Routing Key = token.blacklisted Message = {"jti":"1768793a-ce2c-44cc-8a0d-60621fa2ebb1","exp":1719428493}

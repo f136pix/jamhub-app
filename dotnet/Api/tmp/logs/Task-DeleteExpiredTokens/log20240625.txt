@@ -1,0 +1,25 @@
+2024-06-25 16:04:32.441 -03:00 [INF] 
+**************************************************
+id:ServerRequest
+proccess_id: ServerRequest
+Starting execution at 25/06/2024 16:04:32
+2024-06-25 16:04:33.938 -03:00 [INF] 
+**************************************************
+id:ServerRequest
+proccess_id: ServerRequest
+Deleted token: 1768793a-ce2c-44cc-8a0d-6062dasdaaa2ebb1
+2024-06-25 16:04:33.938 -03:00 [INF] 
+**************************************************
+id:ServerRequest
+proccess_id: ServerRequest
+Deleted token: 1768793a-ce2c-44cc-8a0d-6062dafdasfaaa2ebb1
+2024-06-25 16:04:33.938 -03:00 [INF] 
+**************************************************
+id:ServerRequest
+proccess_id: ServerRequest
+Deleted token: 1768793a-ce2c-44cc-8a0d-6062dafdfaaa2ebb1
+2024-06-25 16:05:03.956 -03:00 [INF] 
+**************************************************
+id:ServerRequest
+proccess_id: ServerRequest
+Starting execution at 25/06/2024 16:05:03

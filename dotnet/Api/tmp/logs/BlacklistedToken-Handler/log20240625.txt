@@ -1,0 +1,30 @@
+2024-06-25 15:59:46.021 -03:00 [INF] 
+**************************************************
+id:ServerRequest
+proccess_id: ServerRequest
+Deleted token 78a72fc8-fdb0-4c89-b7e5-8e70f2bc0a5f
+2024-06-25 16:03:28.982 -03:00 [INF] 
+**************************************************
+id:ServerRequest
+proccess_id: ServerRequest
+Deleted token 1768793a-ce2c-44cc-8a0d-60621fa2ebb1
+2024-06-25 16:03:28.990 -03:00 [INF] 
+**************************************************
+id:ServerRequest
+proccess_id: ServerRequest
+Deleted token 1768793a-ce2c-44cc-8a0d-60621daa2ebb1
+2024-06-25 16:04:33.765 -03:00 [INF] 
+**************************************************
+id:ServerRequest
+proccess_id: ServerRequest
+Deleted token 1768793a-ce2c-44cc-8a0d-6062dasdaaa2ebb1
+2024-06-25 16:04:33.773 -03:00 [INF] 
+**************************************************
+id:ServerRequest
+proccess_id: ServerRequest
+Deleted token 1768793a-ce2c-44cc-8a0d-6062dafdasfaaa2ebb1
+2024-06-25 16:04:33.774 -03:00 [INF] 
+**************************************************
+id:ServerRequest
+proccess_id: ServerRequest
+Deleted token 1768793a-ce2c-44cc-8a0d-6062dafdfaaa2ebb1
