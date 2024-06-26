@@ -1,5 +1,3 @@
-Todo : Job clears expired blacklisted tokens
-
 The main idea is creating an app using a microsservices architeture where one service would be responsible
 for the user authentication and the other for the resources/ email sending services.
 
@@ -11,7 +9,8 @@ decoded in the dotnet app the same way it would in the rails application and the
 blacklisted tokens.
 
 The async communication between the app is made through RabbitMQ , and CQRS and DDD where the main patterns
-praticed.
+praticed. The app was dockerized and deployed to AWS EKS, with some annotations on how to do it using AWS load-balancer
+in the AWS-UTILS.txt file.
 
 App usage
 ---
