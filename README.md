@@ -12,6 +12,8 @@ The async communication between the app is made through RabbitMQ , and CQRS and 
 praticed. The app was dockerized and deployed to AWS EKS, with some annotations on how to do it using AWS load-balancer
 in the AWS-UTILS.txt file.
 
+![Jambub Diagram.drawio.png](Jambub Diagram.drawio.png)
+
 App usage
 ---
 
@@ -48,4 +50,7 @@ App usage
     - `**RESOURCES** /api/Bands`
     - `**RESOURCES** /api/People`
     - `**GET** /confirm/{token} Confirm user account`
+
+
+
 
